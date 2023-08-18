@@ -1,0 +1,9 @@
+STS: https://spring.io/tools
+
+Notepad ++ :  https://notepad-plus-plus.org/downloads/v8.5.6/
+
+
+MYSQL:   https://dev.mysql.com/downloads/file/?id=520406
+
+VSCODE :https://code.visualstudio.com/docs/?dv=win
+ postman:https://www.postman.com/downloads/
