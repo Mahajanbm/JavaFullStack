@@ -1,0 +1,279 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 102
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use fullstackdemo;
+Database changed
+mysql> create table tblDemo6( id int,name varchar(50),salary float);
+Query OK, 0 rows affected (0.80 sec)
+
+mysql> desc tblDemo6
+    -> ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | YES  |     | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| salary | float       | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.05 sec)
+
+mysql> insert into tblDemo6 values(null,"mahi",12345);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into tblDemo6 values(1,"ajay",12345);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblDemo6 values(2,"joe",54623);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblDemo6 values(3,"bob",14526);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select 8 from tblDemo6
+    -> ;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+4 rows in set (0.00 sec)
+
+mysql> select * from tblDemo6;
++------+------+--------+
+| id   | name | salary |
++------+------+--------+
+| NULL | mahi |  12345 |
+|    1 | ajay |  12345 |
+|    2 | joe  |  54623 |
+|    3 | bob  |  14526 |
++------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql>  select * from tblDemo6 where id=1;
++------+------+--------+
+| id   | name | salary |
++------+------+--------+
+|    1 | ajay |  12345 |
++------+------+--------+
+1 row in set (0.00 sec)
+
+mysql>  select * from tblDemo6 where id=null;
+Empty set (0.00 sec)
+
+mysql> select * from tblDemo6 where id is null;
++------+------+--------+
+| id   | name | salary |
++------+------+--------+
+| NULL | mahi |  12345 |
++------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into tblDemo6 values(2,"ajay",654654);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  select * from tblDemo6 ;
++------+------+--------+
+| id   | name | salary |
++------+------+--------+
+| NULL | mahi |  12345 |
+|    1 | ajay |  12345 |
+|    2 | joe  |  54623 |
+|    3 | bob  |  14526 |
+|    2 | ajay | 654654 |
++------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> insert into tblDemo6 values(null,null,654654);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblDemo6 values(2,"ajay",654654);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select  * from tblDemo6;
++------+------+--------+
+| id   | name | salary |
++------+------+--------+
+| NULL | mahi |  12345 |
+|    1 | ajay |  12345 |
+|    2 | joe  |  54623 |
+|    3 | bob  |  14526 |
+|    2 | ajay | 654654 |
+| NULL | NULL | 654654 |
+|    2 | ajay | 654654 |
++------+------+--------+
+7 rows in set (0.00 sec)
+
+mysql> create  table tblStudent ( sId int unique ,name varchar(50) not null,salary flaot
+);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'flaot)' at line 1
+mysql> create  table tblStudent ( sId int unique ,name varchar(50) not null,salary float);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc tblStudent;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| sId    | int         | YES  | UNI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| salary | float       | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc tblDemo6;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | YES  |     | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| salary | float       | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> inser into tblStudent values(1,null,12566);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inser into tblStudent values(1,null,12566)' at line 1
+mysql> insert into tblStudent values(1,null,12566);
+ERROR 1048 (23000): Column 'name' cannot be null
+mysql> insert into tblStudent values(1,"tushar",12566);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblStudent values(1,"tushar",12566);
+ERROR 1062 (23000): Duplicate entry '1' for key 'tblstudent.sId'
+mysql> insert into tblStudent values(null,"mahajan",12566);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> slect * from tblStudent;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect * from tblStudent' at line 1
+mysql> select * from tblStudent;
++------+---------+--------+
+| sId  | name    | salary |
++------+---------+--------+
+|    1 | tushar  |  12566 |
+| NULL | mahajan |  12566 |
++------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> insert into tblStudent values(null,"mahajan",12566);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblStudent;
++------+---------+--------+
+| sId  | name    | salary |
++------+---------+--------+
+|    1 | tushar  |  12566 |
+| NULL | mahajan |  12566 |
+| NULL | mahajan |  12566 |
++------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into tblStudent values(1,"tushar",12566);
+ERROR 1062 (23000): Duplicate entry '1' for key 'tblstudent.sId'
+mysql> insert into tblStudent values(2,null,12566);
+ERROR 1048 (23000): Column 'name' cannot be null
+mysql> insert into tblStudent values(2,null,12566);
+ERROR 1048 (23000): Column 'name' cannot be null
+mysql> create table tblStudentDemo(id int unique,name varchar(50) not null,city varchar(
+50) not null,state varchar(50) not null);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc tblStudentDemo;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  | UNI | NULL    |       |
+| name  | varchar(50) | NO   |     | NULL    |       |
+| city  | varchar(50) | NO   |     | NULL    |       |
+| state | varchar(50) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into tblStudentDemo (id,name,city,state) values(101,null,null,"TS");
+ERROR 1048 (23000): Column 'name' cannot be null
+mysql> insert into tblStudentDemo (id,name,city,state) values(101,"joe",null,"TS");
+ERROR 1048 (23000): Column 'city' cannot be null
+mysql> insert into tblStudentDemo (id,name,city,state) values(101,"joe","hyd","TS");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblStudentDemo (id,name,city,state) values(101,"joe","hyd","TS");
+ERROR 1062 (23000): Duplicate entry '101' for key 'tblstudentdemo.id'
+mysql> insert into tblStudentDemo (id,name,city,state) values(102,"bob","hyd","TS");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select 8 from tblStudentDemo;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
++---+
+2 rows in set (0.01 sec)
+
+mysql> select * from tblStudentDemo;
++------+------+------+-------+
+| id   | name | city | state |
++------+------+------+-------+
+|  101 | joe  | hyd  | TS    |
+|  102 | bob  | hyd  | TS    |
++------+------+------+-------+
+2 rows in set (0.01 sec)
+
+mysql> create table tblEmp(id int unique ,name varchar(50)not null, city varchar(50) not null,state varchar(50) not null,country varchar(50) default 'India');
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> insert into tblEmp values(101,'mahi','hyd','TS','IND');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tblEmp;
++------+------+------+-------+---------+
+| id   | name | city | state | country |
++------+------+------+-------+---------+
+|  101 | mahi | hyd  | TS    | IND     |
++------+------+------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into tblEmp (id,name ,city,state)values(102,'varsha','pune','MH');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tblEmp;
++------+--------+------+-------+---------+
+| id   | name   | city | state | country |
++------+--------+------+-------+---------+
+|  101 | mahi   | hyd  | TS    | IND     |
+|  102 | varsha | pune | MH    | India   |
++------+--------+------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> create table tblEmp1( id int primary key,name varchar(50) not null,city varchar(5
+0) not null);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc tblEMp1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(50) | NO   |     | NULL    |       |
+| city  | varchar(50) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.04 sec)
+
+mysql> insert into tblEmp1 values(101,"mahajan","hyd");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblEmp1 values(101,"mahajan","hyd");
+ERROR 1062 (23000): Duplicate entry '101' for key 'tblemp1.PRIMARY'
+mysql> insert into tblEmp1 values(null,"mahajan","hyd");
+ERROR 1048 (23000): Column 'id' cannot be null
+mysql>
