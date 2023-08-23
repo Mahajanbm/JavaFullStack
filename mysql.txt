@@ -1,0 +1,1 @@
+create table and add data in table and perform opeartion based on condition with alias

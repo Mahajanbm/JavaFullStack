@@ -1,0 +1,394 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 101
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database  fullStackDemo;
+Query OK, 1 row affected (0.15 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 3pm                |
+| aws                |
+| awsbatch           |
+| awsdemo            |
+| bank               |
+| bbb                |
+| books              |
+| cs                 |
+| dd                 |
+| dddd               |
+| demo               |
+| demo1              |
+| demo23             |
+| demodemo           |
+| entity             |
+| fueldemo           |
+| fullstack          |
+| fullstackdemo      |
+| heena              |
+| impact22           |
+| impactjava         |
+| information_schema |
+| javademo           |
+| mmmmm              |
+| mysql              |
+| performance_schema |
+| proj               |
+| project            |
+| projectdemo        |
+| sakila             |
+| sp                 |
+| stud               |
+| student            |
+| super20            |
+| svce               |
+| sys                |
+| world              |
++--------------------+
+37 rows in set (0.07 sec)
+
+mysql> use fulstackdemo;
+ERROR 1049 (42000): Unknown database 'fulstackdemo'
+mysql> use fullstackdemo;
+Database changed
+mysql> show tables;
+Empty set (0.04 sec)
+
+mysql> create table tblEmployee(id int,name varchar(50) ,city varchar(50),salary float);
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc tblEmployee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | YES  |     | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| city   | varchar(50) | YES  |     | NULL    |       |
+| salary | float       | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into tblEmployee values(101,"mahajan","hyd",12345.5);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into tblEmployee values(102,"tushar","hyd",12345.5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblEmployee values(103,"joe","delhi",8785);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblEmployee values(104,"bob","mumbai",8785);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select  * from tblEmployee;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  101 | mahajan | hyd    | 12345.5 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  103 | joe     | delhi  |    8785 |
+|  104 | bob     | mumbai |    8785 |
++------+---------+--------+---------+
+4 rows in set (0.01 sec)
+
+mysql> select id,name,city,salary from tblEmployee;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  101 | mahajan | hyd    | 12345.5 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  103 | joe     | delhi  |    8785 |
+|  104 | bob     | mumbai |    8785 |
++------+---------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> desc tblEmployee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | YES  |     | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| city   | varchar(50) | YES  |     | NULL    |       |
+| salary | float       | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select id EmployeeId,name EmployeeName,city EmployeeCity,salary EmployeeSalary from tblEmployee;
++------------+--------------+--------------+----------------+
+| EmployeeId | EmployeeName | EmployeeCity | EmployeeSalary |
++------------+--------------+--------------+----------------+
+|        101 | mahajan      | hyd          |        12345.5 |
+|        102 | tushar       | hyd          |        12345.5 |
+|        103 | joe          | delhi        |           8785 |
+|        104 | bob          | mumbai       |           8785 |
++------------+--------------+--------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select id as EmployeeId from tblEmployee;
++------------+
+| EmployeeId |
++------------+
+|        101 |
+|        102 |
+|        103 |
+|        104 |
++------------+
+4 rows in set (0.00 sec)
+
+mysql> create table tblDemo(pName char(20));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc tblDemo;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| pName | char(20) | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+1 row in set (0.01 sec)
+
+mysql> create table tblDemo1(id int,name char(256));
+ERROR 1074 (42000): Column length too big for column 'name' (max = 255); use BLOB or TEXT instead
+mysql> create table tblDemo1(id int,name char(255));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table tblData(id int ,name varchar(256));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table tblData1(id int,name varchar(32766));
+ERROR 1074 (42000): Column length too big for column 'name' (max = 16383); use BLOB or TEXT instead
+mysql> create table tblData1(id int,name varchar(32765));
+ERROR 1074 (42000): Column length too big for column 'name' (max = 16383); use BLOB or TEXT instead
+mysql> create table tblData1(id int,name varchar(16383);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table tblData1(id int,name varchar(16383));
+ERROR 1118 (42000): Row size too large. The maximum row size for the used table type, not counting BLOBs, is 65535. This includes storage overhead, check the manual. You have to change some columns to TEXT or BLOBs
+mysql> clear
+mysql> create table tblData1(id int,name varchar(1024));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table tblData1(id int,name varchar(2056));
+ERROR 1050 (42S01): Table 'tbldata1' already exists
+mysql> create table tblData12(id int,name varchar(2056));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table tblDemo3(id int ,name tinytext(55)):
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(55)):' at line 1
+mysql> create table tblDemo3(id int ,name tinytext(55));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(55))' at line 1
+mysql> create table tblDemo3(id int ,name tinytext);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc tblDemo3;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| id    | int      | YES  |     | NULL    |       |
+| name  | tinytext | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> create table tblEmployee2( id int,name text);
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> desc tblEmployee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | YES  |     | NULL    |       |
+| name   | varchar(50) | YES  |     | NULL    |       |
+| city   | varchar(50) | YES  |     | NULL    |       |
+| salary | float       | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc tblEmployee2;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| id    | int  | YES  |     | NULL    |       |
+| name  | text | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from tblEmployee;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  101 | mahajan | hyd    | 12345.5 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  103 | joe     | delhi  |    8785 |
+|  104 | bob     | mumbai |    8785 |
++------+---------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from tblEmployee where id=102
+    -> ;
++------+--------+------+---------+
+| id   | name   | city | salary  |
++------+--------+------+---------+
+|  102 | tushar | hyd  | 12345.5 |
++------+--------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from tblEmployee where name='mahajan';
++------+---------+------+---------+
+| id   | name    | city | salary  |
++------+---------+------+---------+
+|  101 | mahajan | hyd  | 12345.5 |
++------+---------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from tblEmployee where salary=8785;
++------+------+--------+--------+
+| id   | name | city   | salary |
++------+------+--------+--------+
+|  103 | joe  | delhi  |   8785 |
+|  104 | bob  | mumbai |   8785 |
++------+------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> insert into tblEmployee values(105,"varsha","delhi",8785);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblEmployee values(106,"shradda","pune",879465);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblEmployee values(107,"tim","hyd",98756);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblEmployee values(108,"ashok","mumbai",12345);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tblEmployee;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  101 | mahajan | hyd    | 12345.5 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  103 | joe     | delhi  |    8785 |
+|  104 | bob     | mumbai |    8785 |
+|  105 | varsha  | delhi  |    8785 |
+|  106 | shradda | pune   |  879465 |
+|  107 | tim     | hyd    |   98756 |
+|  108 | ashok   | mumbai |   12345 |
++------+---------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from tblemployee;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  101 | mahajan | hyd    | 12345.5 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  103 | joe     | delhi  |    8785 |
+|  104 | bob     | mumbai |    8785 |
+|  105 | varsha  | delhi  |    8785 |
+|  106 | shradda | pune   |  879465 |
+|  107 | tim     | hyd    |   98756 |
+|  108 | ashok   | mumbai |   12345 |
++------+---------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from tblemployee order by id;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  101 | mahajan | hyd    | 12345.5 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  103 | joe     | delhi  |    8785 |
+|  104 | bob     | mumbai |    8785 |
+|  105 | varsha  | delhi  |    8785 |
+|  106 | shradda | pune   |  879465 |
+|  107 | tim     | hyd    |   98756 |
+|  108 | ashok   | mumbai |   12345 |
++------+---------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from tblemployee order by name;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  108 | ashok   | mumbai |   12345 |
+|  104 | bob     | mumbai |    8785 |
+|  103 | joe     | delhi  |    8785 |
+|  101 | mahajan | hyd    | 12345.5 |
+|  106 | shradda | pune   |  879465 |
+|  107 | tim     | hyd    |   98756 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  105 | varsha  | delhi  |    8785 |
++------+---------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from tblemployee order by city;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  103 | joe     | delhi  |    8785 |
+|  105 | varsha  | delhi  |    8785 |
+|  101 | mahajan | hyd    | 12345.5 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  107 | tim     | hyd    |   98756 |
+|  104 | bob     | mumbai |    8785 |
+|  108 | ashok   | mumbai |   12345 |
+|  106 | shradda | pune   |  879465 |
++------+---------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from tblemployee order by salary;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  103 | joe     | delhi  |    8785 |
+|  104 | bob     | mumbai |    8785 |
+|  105 | varsha  | delhi  |    8785 |
+|  108 | ashok   | mumbai |   12345 |
+|  101 | mahajan | hyd    | 12345.5 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  107 | tim     | hyd    |   98756 |
+|  106 | shradda | pune   |  879465 |
++------+---------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from tblemployee order by salary desc;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  106 | shradda | pune   |  879465 |
+|  107 | tim     | hyd    |   98756 |
+|  101 | mahajan | hyd    | 12345.5 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  108 | ashok   | mumbai |   12345 |
+|  103 | joe     | delhi  |    8785 |
+|  104 | bob     | mumbai |    8785 |
+|  105 | varsha  | delhi  |    8785 |
++------+---------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from tblemployee order by name desc;
++------+---------+--------+---------+
+| id   | name    | city   | salary  |
++------+---------+--------+---------+
+|  105 | varsha  | delhi  |    8785 |
+|  102 | tushar  | hyd    | 12345.5 |
+|  107 | tim     | hyd    |   98756 |
+|  106 | shradda | pune   |  879465 |
+|  101 | mahajan | hyd    | 12345.5 |
+|  103 | joe     | delhi  |    8785 |
+|  104 | bob     | mumbai |    8785 |
+|  108 | ashok   | mumbai |   12345 |
++------+---------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql>
