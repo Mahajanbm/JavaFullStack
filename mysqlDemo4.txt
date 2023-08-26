@@ -1,0 +1,419 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database mysqldemo;
+Query OK, 1 row affected (0.12 sec)
+
+mysql> use mysqldemo;
+Database changed
+mysql> create table tblStudent(id int primary key auto_increment,name varchar(50),city varchar(50));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> insert into tblStudent(name,city) values("vijay","hyd");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into tblStudent(name,city) values("joe","hyd");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("bob","pune");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("tim","mumbai");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tblStudent;
++----+-------+--------+
+| id | name  | city   |
++----+-------+--------+
+|  1 | vijay | hyd    |
+|  2 | joe   | hyd    |
+|  3 | bob   | pune   |
+|  4 | tim   | mumbai |
++----+-------+--------+
+4 rows in set (0.01 sec)
+
+mysql> delete from tblStudent;
+Query OK, 4 rows affected (0.01 sec)
+
+mysql> insert into tblStudent(name,city) values("tim","mumbai");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("bob","pune");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("joe","hyd");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("vijay","hyd");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> slect * from tblStudent;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds toyour MySQL server version for the right syntax to use near 'slect * from tblStudent' at line 1
+mysql> select * from tblStudent;
++----+-------+--------+
+| id | name  | city   |
++----+-------+--------+
+|  5 | tim   | mumbai |
+|  6 | bob   | pune   |
+|  7 | joe   | hyd    |
+|  8 | vijay | hyd    |
++----+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> drop tblStudent;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds toyour MySQL server version for the right syntax to use near 'tblStudent' at line 1
+mysql> drop table  tblStudent;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table tblStudent(id int primary key auto_increment,name varchar(50),city varchar(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into tblStudent(name,city) values("vijay","hyd");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("joe","hyd");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("bob","pune");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("tim","mumbai");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblStuent;
+ERROR 1146 (42S02): Table 'mysqldemo.tblstuent' doesn't exist
+mysql> select * from tblStudent;
++----+-------+--------+
+| id | name  | city   |
++----+-------+--------+
+|  1 | vijay | hyd    |
+|  2 | joe   | hyd    |
+|  3 | bob   | pune   |
+|  4 | tim   | mumbai |
++----+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> truncate tblStudent;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from tblStudent;
+Empty set (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("tim","mumbai");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("tim","mumbai");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("bob","pune");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblStudent(name,city) values("joe","hyd");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblStudent(name,city) values("vijay","hyd");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblStudent;
++----+-------+--------+
+| id | name  | city   |
++----+-------+--------+
+|  1 | tim   | mumbai |
+|  2 | tim   | mumbai |
+|  3 | bob   | pune   |
+|  4 | joe   | hyd    |
+|  5 | vijay | hyd    |
++----+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> create table tblCategory( cId int primary key auto_increment,cName varchar(50));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table tblProduct(pId int primary key auto_increment,pName varchar(50), cId int,
+    -> constraint fk_key  foreign key (cId) references tblCategory(cId));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc tblProduct;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| pId   | int         | NO   | PRI | NULL    | auto_increment |
+| pName | varchar(50) | YES  |     | NULL    |                |
+| cId   | int         | YES  | MUL | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.08 sec)
+
+mysql> desc tblCategory;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| cId   | int         | NO   | PRI | NULL    | auto_increment |
+| cName | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> insert into tblCategory(name) values('tv');
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> insert into tblCategory(cname) values('tv');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblCategory(cname) values('mobile');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblCategory(cname) values('fridge');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblCategory;
++-----+--------+
+| cId | cName  |
++-----+--------+
+|   1 | tv     |
+|   2 | mobile |
+|   3 | fridge |
++-----+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into tblProduct (pName,cId) values("samsung Tv",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblProduct (pName,cId) values("samsung Mobile",2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create table tblProduct(pId int primary key auto_increment,pName varchar(50), cId int,
+    -> constraint fk_key  foreign key (cId) references tblCategory(cId));
+ERROR 1050 (42S01): Table 'tblproduct' already exists
+mysql> insert into tblProduct (pName,cId) values("lg fridge",3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tblProduct;
++-----+----------------+------+
+| pId | pName          | cId  |
++-----+----------------+------+
+|   1 | samsung Tv     |    1 |
+|   2 | samsung Mobile |    2 |
+|   3 | lg fridge      |    3 |
++-----+----------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from tblCategory;
++-----+--------+
+| cId | cName  |
++-----+--------+
+|   1 | tv     |
+|   2 | mobile |
+|   3 | fridge |
++-----+--------+
+3 rows in set (0.00 sec)
+
+mysql> update tblCategory set  cId=5 where cid=1;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`mysqldemo`.`tblproduct`, CONSTRAINT `fk_key` FOREIGN KEY (`cId`) REFERENCES `tblcategory` (`cId`))
+mysql> delete from tblCategory where cid=1;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`mysqldemo`.`tblproduct`, CONSTRAINT `fk_key` FOREIGN KEY (`cId`) REFERENCES `tblcategory` (`cId`))
+mysql> drop table tblProduct;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc tblProduct;
+ERROR 1146 (42S02): Table 'mysqldemo.tblproduct' doesn't exist
+mysql> create table tblProduct(pId int primary key auto_increment,pName varchar(50), cId int,
+    -> constraint fk_key  foreign key (cId) references tblCategory(cId) on update cascade);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into tblProduct (pName,cId) values("lg fridge",3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblProduct (pName,cId) values("samsung Mobile",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblProduct (pName,cId) values("samsung Tv",1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblProduct;
++-----+----------------+------+
+| pId | pName          | cId  |
++-----+----------------+------+
+|   1 | lg fridge      |    3 |
+|   2 | samsung Mobile |    2 |
+|   3 | samsung Tv     |    1 |
++-----+----------------+------+
+3 rows in set (0.00 sec)
+
+mysql> update tblCategory set cId=5 where cId=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from tblCategory;
++-----+--------+
+| cId | cName  |
++-----+--------+
+|   2 | mobile |
+|   3 | fridge |
+|   5 | tv     |
++-----+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from tblProduct;
++-----+----------------+------+
+| pId | pName          | cId  |
++-----+----------------+------+
+|   1 | lg fridge      |    3 |
+|   2 | samsung Mobile |    2 |
+|   3 | samsung Tv     |    5 |
++-----+----------------+------+
+3 rows in set (0.00 sec)
+
+mysql> drop table tblProduct;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table tblProduct(pId int primary key auto_increment,pName varchar(50), cId int,
+    -> constraint fk_key  foreign key (cId) references tblCategory(cId) on delete cascade);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into tblProduct (pName,cId) values("samsung Tv",1);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`mysqldemo`.`tblproduct`, CONSTRAINT `fk_key` FOREIGN KEY (`cId`) REFERENCES `tblcategory` (`cId`) ON DELETE CASCADE)
+mysql> insert into tblProduct (pName,cId) values("samsung Mobile",2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblProduct (pName,cId) values("lg fridge",3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblProduct (pName,cId) values("samsung Tv",1);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`mysqldemo`.`tblproduct`, CONSTRAINT `fk_key` FOREIGN KEY (`cId`) REFERENCES `tblcategory` (`cId`) ON DELETE CASCADE)
+mysql> insert into tblProduct (pName,cId) values("samsung Tv",5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblProduct;
++-----+----------------+------+
+| pId | pName          | cId  |
++-----+----------------+------+
+|   2 | samsung Mobile |    2 |
+|   3 | lg fridge      |    3 |
+|   5 | samsung Tv     |    5 |
++-----+----------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from tblCategory;
++-----+--------+
+| cId | cName  |
++-----+--------+
+|   2 | mobile |
+|   3 | fridge |
+|   5 | tv     |
++-----+--------+
+3 rows in set (0.00 sec)
+
+mysql> delete from tblCategory where cid=3;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblProduct;
++-----+----------------+------+
+| pId | pName          | cId  |
++-----+----------------+------+
+|   2 | samsung Mobile |    2 |
+|   5 | samsung Tv     |    5 |
++-----+----------------+------+
+2 rows in set (0.00 sec)
+
+mysql> drop table tblCategory;
+ERROR 3730 (HY000): Cannot drop table 'tblcategory' referenced by a foreign key constraint 'fk_key' on table 'tblproduct'.
+mysql> drop table tblProduct;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop table tblCategory;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table tblCategory( cId int primary key auto_increment,cName varchar(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table tblProduct(pId int primary key auto_increment,pName varchar(50), cId int,
+    -> constraint fk_key  foreign key (cId) references tblCategory(cId) on update set null on delete set null);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into tblCategory(cname) values('tv');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblCategory(cname) values('mobile');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblCategory(cname) values('fridge');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblProduct (pName,cId) values("samsung Tv",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblProduct (pName,cId) values("samsung Mobile",2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblProduct (pName,cId) values("lg fridge",3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblPrdouct;
+ERROR 1146 (42S02): Table 'mysqldemo.tblprdouct' doesn't exist
+mysql> select * from tblPrdouct;
+ERROR 1146 (42S02): Table 'mysqldemo.tblprdouct' doesn't exist
+mysql> select * from tblProduct;
++-----+----------------+------+
+| pId | pName          | cId  |
++-----+----------------+------+
+|   1 | samsung Tv     |    1 |
+|   2 | samsung Mobile |    2 |
+|   3 | lg fridge      |    3 |
++-----+----------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from tblCategory;
++-----+--------+
+| cId | cName  |
++-----+--------+
+|   1 | tv     |
+|   2 | mobile |
+|   3 | fridge |
++-----+--------+
+3 rows in set (0.00 sec)
+
+mysql> delete from tblcategory where cId= 1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblProduct;
++-----+----------------+------+
+| pId | pName          | cId  |
++-----+----------------+------+
+|   1 | samsung Tv     | NULL |
+|   2 | samsung Mobile |    2 |
+|   3 | lg fridge      |    3 |
++-----+----------------+------+
+3 rows in set (0.00 sec)
+
+mysql> update  tblcategory  set cid =5 where cId= 2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from tblProduct;
++-----+----------------+------+
+| pId | pName          | cId  |
++-----+----------------+------+
+|   1 | samsung Tv     | NULL |
+|   2 | samsung Mobile | NULL |
+|   3 | lg fridge      |    3 |
++-----+----------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from tblCategory;
++-----+--------+
+| cId | cName  |
++-----+--------+
+|   3 | fridge |
+|   5 | mobile |
++-----+--------+
+2 rows in set (0.00 sec)
+
+mysql>
