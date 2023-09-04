@@ -1,0 +1,14 @@
+Write a mysql statement to select data of only CS and IT departments.
+. Write a mysql statement to select data of all departments in descending order by age.
+Write a mysql statement to retrieve name beginning with 'm'.
+Write a mysql statement to find the concatenated first_name, last_name where the age of the employee is greater than 30.
+
+Select the detail of employee whose emailId is in gmail.
+Select the details of the employee who work either for department E-104 or E-102.
+Select the department name of the company which is assigned to the employee whose employee id is grater 103.
+
+
+
+
+create table employee(empid int primary key,empname varchar(100), department varchar(50),contactno bigint, emaildid varchar(100), empheadid int)
+create table empsalary(empid int foreign key references employee(empid), salary bigint, ispermanent varchar(3))
