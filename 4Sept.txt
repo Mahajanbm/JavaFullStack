@@ -1,0 +1,628 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use fullstackdemo;
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_fullstackdemo |
++-------------------------+
+| tbldata                 |
+| tbldata1                |
+| tbldata12               |
+| tbldemo                 |
+| tbldemo1                |
+| tbldemo3                |
+| tbldemo6                |
+| tblemp                  |
+| tblemp1                 |
+| tblemployee             |
+| tblemployee2            |
+| tblorder                |
+| tblproduct1             |
+| tblstud                 |
+| tblstudent              |
+| tblstudentdemo          |
++-------------------------+
+16 rows in set (0.19 sec)
+
+mysql> select * from tblProduct1;
++-----+--------+-------+
+| pId | pName  | price |
++-----+--------+-------+
+|   1 | mobile | 12345 |
+|   2 | TV     | 54123 |
+|   3 | Camera | 45612 |
++-----+--------+-------+
+3 rows in set (0.04 sec)
+
+mysql> desc tblStud;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | NO   |     | NULL    |                |
+| city  | varchar(50) | NO   |     | NULL    |                |
+| state | varchar(50) | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+4 rows in set (0.02 sec)
+
+mysql> desc tblEmp;;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | YES  | UNI | NULL    |       |
+| name    | varchar(50) | NO   |     | NULL    |       |
+| city    | varchar(50) | NO   |     | NULL    |       |
+| state   | varchar(50) | NO   |     | NULL    |       |
+| country | varchar(50) | YES  |     | India   |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+ERROR:
+No query specified
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 3pm                |
+| aws                |
+| awsbatch           |
+| awsdemo            |
+| bank               |
+| bbb                |
+| books              |
+| cs                 |
+| dd                 |
+| dddd               |
+| demo               |
+| demo1              |
+| demo23             |
+| demodemo           |
+| entity             |
+| fueldemo           |
+| fullstack          |
+| fullstackdemo      |
+| heena              |
+| impact22           |
+| impactjava         |
+| information_schema |
+| javademo           |
+| mmmmm              |
+| mysql              |
+| mysqldemo          |
+| performance_schema |
+| proj               |
+| project            |
+| projectdemo        |
+| sakila             |
+| sp                 |
+| stud               |
+| student            |
+| super20            |
+| svce               |
+| sys                |
+| world              |
++--------------------+
+38 rows in set (0.01 sec)
+
+mysql> use fullstack;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_fullstack |
++---------------------+
+| tblemployee         |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> desc tblEmployee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| eId     | int         | YES  |     | NULL    |       |
+| eName   | varchar(50) | YES  |     | NULL    |       |
+| eCity   | varchar(50) | YES  |     | NULL    |       |
+| eSalary | float       | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> use mysqldemo;
+Database changed
+mysql> desc tblEmp;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| name    | varchar(50) | YES  |     | NULL    |       |
+| adharno | int         | NO   | PRI | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from tblEmp;
++----+------+---------+
+| id | name | adharno |
++----+------+---------+
+|  1 | NULL |       1 |
+|  1 | NULL |       2 |
++----+------+---------+
+2 rows in set (0.01 sec)
+
+mysql> truncate tblEmp;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> select * from tblEmp;
+Empty set (0.00 sec)
+
+mysql> drop table TblEmp;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table tblEmp (id int auto_increment,name varchar(50) ,adhar int ,primary key (id,name))
+    -> ;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc tblEmp;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | NO   | PRI | NULL    |                |
+| adhar | int         | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into tblEmp(name) values("mahi")
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblEmp(name) values("mahi")
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblEmp(name) values("mahi")
+    -> ;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from tblEmp;
++----+------+-------+
+| id | name | adhar |
++----+------+-------+
+|  1 | mahi |  NULL |
+|  2 | mahi |  NULL |
+|  3 | mahi |  NULL |
++----+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc tblEmp;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | NO   | PRI | NULL    |                |
+| adhar | int         | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> create table tblEmp1 (id int auto_increment,name varchar(50) ,adhar int ,primary key (id,adhar))
+    -> ;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table tblEmp2 (id int ,name varchar(50) ,adhar int ,primary key (id,adhar))
+    -> ;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into tblEmp2 (id,adhar) values(1,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblEmp2 (id,adhar) values(1,1);
+ERROR 1062 (23000): Duplicate entry '1-1' for key 'tblemp2.PRIMARY'
+mysql> create table Employee( eId int primary key auto_increment,name varchar(50),city varchar(50),sal
+ary float);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into tblEmployee(name,city,salary) values("mahajan","hyd",12345);
+ERROR 1146 (42S02): Table 'mysqldemo.tblemployee' doesn't exist
+mysql> insert into Employee(name,city,salary) values("mahajan","hyd",12345);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee(name,city,salary) values("varsha","pune",45612);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee(name,city,salary) values("tushar","Delhi",41256);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee(name,city,salary) values("vijay","pune",54123);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee(name,city,salary) values("shraddha","pune",74125);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee(name,city,salary) values("shiva","jaipur",74125);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee(name,city,salary) values("joe","Delhi",96584);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee(name,city,salary) values("Payal","Hyd",54632);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Employee(name,city,salary) values("tim","Hyd",54632);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Employee(name,city,salary) values("bob","Mumbai",41632);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   1 | mahajan  | hyd    |  12345 |
+|   2 | varsha   | pune   |  45612 |
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
+|   7 | joe      | Delhi  |  96584 |
+|   8 | Payal    | Hyd    |  54632 |
+|   9 | tim      | Hyd    |  54632 |
+|  10 | bob      | Mumbai |  41632 |
++-----+----------+--------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee where id=1;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> select * from employee where eid=1;
++-----+---------+------+--------+
+| eId | name    | city | salary |
++-----+---------+------+--------+
+|   1 | mahajan | hyd  |  12345 |
++-----+---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where eid=1 AND city="hyd";
++-----+---------+------+--------+
+| eId | name    | city | salary |
++-----+---------+------+--------+
+|   1 | mahajan | hyd  |  12345 |
++-----+---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where eid=1 AND city="hyd1";
+Empty set (0.00 sec)
+
+mysql> select * from employee where  city="hyd1";
+Empty set (0.00 sec)
+
+mysql> select * from employee where  city="hyd";
++-----+---------+------+--------+
+| eId | name    | city | salary |
++-----+---------+------+--------+
+|   1 | mahajan | hyd  |  12345 |
+|   8 | Payal   | Hyd  |  54632 |
+|   9 | tim     | Hyd  |  54632 |
++-----+---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where  city="hyd" AND name="mahajan";
++-----+---------+------+--------+
+| eId | name    | city | salary |
++-----+---------+------+--------+
+|   1 | mahajan | hyd  |  12345 |
++-----+---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where  city="hyd" AND name="mahajan" AND eid=2;
+Empty set (0.00 sec)
+
+mysql> select * from employee where  city="hyd" AND name="mahajan" AND eid=1;
++-----+---------+------+--------+
+| eId | name    | city | salary |
++-----+---------+------+--------+
+|   1 | mahajan | hyd  |  12345 |
++-----+---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where  city="hyd" OR name="mahajan"
+    -> ;
++-----+---------+------+--------+
+| eId | name    | city | salary |
++-----+---------+------+--------+
+|   1 | mahajan | hyd  |  12345 |
+|   8 | Payal   | Hyd  |  54632 |
+|   9 | tim     | Hyd  |  54632 |
++-----+---------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where  city="hyd" OR name="mahajan" or id=5;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> select * from employee where  city="hyd" OR name="mahajan" OR eid=5;
++-----+----------+------+--------+
+| eId | name     | city | salary |
++-----+----------+------+--------+
+|   1 | mahajan  | hyd  |  12345 |
+|   5 | shraddha | pune |  74125 |
+|   8 | Payal    | Hyd  |  54632 |
+|   9 | tim      | Hyd  |  54632 |
++-----+----------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   1 | mahajan  | hyd    |  12345 |
+|   2 | varsha   | pune   |  45612 |
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
+|   7 | joe      | Delhi  |  96584 |
+|   8 | Payal    | Hyd    |  54632 |
+|   9 | tim      | Hyd    |  54632 |
+|  10 | bob      | Mumbai |  41632 |
++-----+----------+--------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee where eId>2 AND eId<8;
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
+|   7 | joe      | Delhi  |  96584 |
++-----+----------+--------+--------+
+5 rows in set (0.01 sec)
+
+mysql> select * from employee where eId between 1  AND 8;
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   1 | mahajan  | hyd    |  12345 |
+|   2 | varsha   | pune   |  45612 |
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
+|   7 | joe      | Delhi  |  96584 |
+|   8 | Payal    | Hyd    |  54632 |
++-----+----------+--------+--------+
+8 rows in set (0.01 sec)
+
+mysql> select * from employee where salary between 30000  AND 60000;
++-----+--------+--------+--------+
+| eId | name   | city   | salary |
++-----+--------+--------+--------+
+|   2 | varsha | pune   |  45612 |
+|   3 | tushar | Delhi  |  41256 |
+|   4 | vijay  | pune   |  54123 |
+|   8 | Payal  | Hyd    |  54632 |
+|   9 | tim    | Hyd    |  54632 |
+|  10 | bob    | Mumbai |  41632 |
++-----+--------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   1 | mahajan  | hyd    |  12345 |
+|   2 | varsha   | pune   |  45612 |
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
+|   7 | joe      | Delhi  |  96584 |
+|   8 | Payal    | Hyd    |  54632 |
+|   9 | tim      | Hyd    |  54632 |
+|  10 | bob      | Mumbai |  41632 |
++-----+----------+--------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee eid= 1 OR eid=3 OR eid=6 OR eid=10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 1 OR eid=3 OR eid=6 OR eid=10' at line 1
+mysql> select * from employee where eid=1 OR eid=3 OR eid=6 OR eid=10;
++-----+---------+--------+--------+
+| eId | name    | city   | salary |
++-----+---------+--------+--------+
+|   1 | mahajan | hyd    |  12345 |
+|   3 | tushar  | Delhi  |  41256 |
+|   6 | shiva   | jaipur |  74125 |
+|  10 | bob     | Mumbai |  41632 |
++-----+---------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where eId IN(1,3,6,10);
++-----+---------+--------+--------+
+| eId | name    | city   | salary |
++-----+---------+--------+--------+
+|   1 | mahajan | hyd    |  12345 |
+|   3 | tushar  | Delhi  |  41256 |
+|   6 | shiva   | jaipur |  74125 |
+|  10 | bob     | Mumbai |  41632 |
++-----+---------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where eId  NOT IN(1,3,6,10);
++-----+----------+-------+--------+
+| eId | name     | city  | salary |
++-----+----------+-------+--------+
+|   2 | varsha   | pune  |  45612 |
+|   4 | vijay    | pune  |  54123 |
+|   5 | shraddha | pune  |  74125 |
+|   7 | joe      | Delhi |  96584 |
+|   8 | Payal    | Hyd   |  54632 |
+|   9 | tim      | Hyd   |  54632 |
++-----+----------+-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employee (city) values("pune");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   1 | mahajan  | hyd    |  12345 |
+|   2 | varsha   | pune   |  45612 |
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
+|   7 | joe      | Delhi  |  96584 |
+|   8 | Payal    | Hyd    |  54632 |
+|   9 | tim      | Hyd    |  54632 |
+|  10 | bob      | Mumbai |  41632 |
+|  11 | NULL     | pune   |   NULL |
++-----+----------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee where eId=1;
++-----+---------+------+--------+
+| eId | name    | city | salary |
++-----+---------+------+--------+
+|   1 | mahajan | hyd  |  12345 |
++-----+---------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where eId=null;
+Empty set (0.00 sec)
+
+mysql> select * from employee where eId IS NULL;
+Empty set (0.00 sec)
+
+mysql> select * from employee where name IS NULL;
++-----+------+------+--------+
+| eId | name | city | salary |
++-----+------+------+--------+
+|  11 | NULL | pune |   NULL |
++-----+------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where name = NULL;
+Empty set (0.00 sec)
+
+mysql> select * from employee where name IS NULL;
++-----+------+------+--------+
+| eId | name | city | salary |
++-----+------+------+--------+
+|  11 | NULL | pune |   NULL |
++-----+------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee;
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   1 | mahajan  | hyd    |  12345 |
+|   2 | varsha   | pune   |  45612 |
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
+|   7 | joe      | Delhi  |  96584 |
+|   8 | Payal    | Hyd    |  54632 |
+|   9 | tim      | Hyd    |  54632 |
+|  10 | bob      | Mumbai |  41632 |
+|  11 | NULL     | pune   |   NULL |
++-----+----------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee where name='s';
+Empty set (0.00 sec)
+
+mysql> select * from employee where name='shraddha';
++-----+----------+------+--------+
+| eId | name     | city | salary |
++-----+----------+------+--------+
+|   5 | shraddha | pune |  74125 |
++-----+----------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where name LIKE 's%';
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
++-----+----------+--------+--------+
+2 rows in set (0.01 sec)
+
+mysql> select * from employee where name LIKE 't%';
++-----+--------+-------+--------+
+| eId | name   | city  | salary |
++-----+--------+-------+--------+
+|   3 | tushar | Delhi |  41256 |
+|   9 | tim    | Hyd   |  54632 |
++-----+--------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   1 | mahajan  | hyd    |  12345 |
+|   2 | varsha   | pune   |  45612 |
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
+|   7 | joe      | Delhi  |  96584 |
+|   8 | Payal    | Hyd    |  54632 |
+|   9 | tim      | Hyd    |  54632 |
+|  10 | bob      | Mumbai |  41632 |
+|  11 | NULL     | pune   |   NULL |
++-----+----------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee where name  LIKE '%a';
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   2 | varsha   | pune   |  45612 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
++-----+----------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+----------+--------+--------+
+| eId | name     | city   | salary |
++-----+----------+--------+--------+
+|   1 | mahajan  | hyd    |  12345 |
+|   2 | varsha   | pune   |  45612 |
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  74125 |
+|   7 | joe      | Delhi  |  96584 |
+|   8 | Payal    | Hyd    |  54632 |
+|   9 | tim      | Hyd    |  54632 |
+|  10 | bob      | Mumbai |  41632 |
+|  11 | NULL     | pune   |   NULL |
++-----+----------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee where name  LIKE '%i%';
++-----+-------+--------+--------+
+| eId | name  | city   | salary |
++-----+-------+--------+--------+
+|   4 | vijay | pune   |  54123 |
+|   6 | shiva | jaipur |  74125 |
+|   9 | tim   | Hyd    |  54632 |
++-----+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql>
