@@ -1,0 +1,498 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> drop user Shraddha;
+ERROR 1396 (HY000): Operation DROP USER failed for 'Shraddha'@'%'
+mysql> show grants for root;
+ERROR 1141 (42000): There is no such grant defined for user 'root' on host '%'
+mysql> create user demo;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create user 'mahimahi'@'localhost' identified by '1234';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT CREATE,SELECT  ON *.* TO 'mahimahi'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT CREATE,insert ON *.* TO 'mahimahi'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop user mahimahi@localhost;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 3pm                |
+| aws                |
+| awsbatch           |
+| awsdemo            |
+| bank               |
+| bbb                |
+| books              |
+| cs                 |
+| dd                 |
+| dddd               |
+| demo               |
+| demo1              |
+| demo23             |
+| demodemo           |
+| entity             |
+| fueldemo           |
+| fullstack          |
+| fullstackdemo      |
+| heena              |
+| impact22           |
+| impactjava         |
+| information_schema |
+| javademo           |
+| mmmmm              |
+| mysql              |
+| mysqldemo          |
+| performance_schema |
+| proj               |
+| project            |
+| projectdemo        |
+| sakila             |
+| sp                 |
+| stud               |
+| student            |
+| super20            |
+| svce               |
+| sys                |
+| world              |
++--------------------+
+38 rows in set (0.01 sec)
+
+mysql> drop database stud;
+Query OK, 3 rows affected (0.09 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 3pm                |
+| aws                |
+| awsbatch           |
+| awsdemo            |
+| bank               |
+| bbb                |
+| books              |
+| cs                 |
+| dd                 |
+| dddd               |
+| demo               |
+| demo1              |
+| demo23             |
+| demodemo           |
+| entity             |
+| fueldemo           |
+| fullstack          |
+| fullstackdemo      |
+| heena              |
+| impact22           |
+| impactjava         |
+| information_schema |
+| javademo           |
+| mmmmm              |
+| mysql              |
+| mysqldemo          |
+| performance_schema |
+| proj               |
+| project            |
+| projectdemo        |
+| sakila             |
+| sp                 |
+| student            |
+| super20            |
+| svce               |
+| sys                |
+| world              |
++--------------------+
+37 rows in set (0.00 sec)
+
+mysql> use mysqldemo;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_mysqldemo |
++---------------------+
+| infosysemployee     |
+| taldemo             |
+| tblcategory         |
+| tblemp              |
+| tblemp1             |
+| tblemp2             |
+| tblproduct          |
+| tblstudent          |
++---------------------+
+8 rows in set (0.01 sec)
+
+mysql> drop table tblemp2;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc tblemp;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | NO   | PRI | NULL    |                |
+| adhar | int         | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table tblemp drop adhar;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tblemp;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | NO   | PRI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select *from employee;
+ERROR 1146 (42S02): Table 'mysqldemo.employee' doesn't exist
+mysql> show tables;
++---------------------+
+| Tables_in_mysqldemo |
++---------------------+
+| infosysemployee     |
+| taldemo             |
+| tblcategory         |
+| tblemp              |
+| tblemp1             |
+| tblproduct          |
+| tblstudent          |
++---------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from tblEmp1;
+Empty set (0.00 sec)
+
+mysql> select * from tblstudent;
++----+-------+--------+
+| id | name  | city   |
++----+-------+--------+
+|  1 | tim   | mumbai |
+|  2 | tim   | mumbai |
+|  3 | bob   | pune   |
+|  4 | joe   | hyd    |
+|  5 | vijay | hyd    |
++----+-------+--------+
+5 rows in set (0.01 sec)
+
+mysql> select * from infosysemployee;
++--------+-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| mobile | eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++--------+-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| NULL   |   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |   6 | shiva    | jaipur |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |   8 | Payal    | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+| NULL   |  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++--------+-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.02 sec)
+
+mysql> alter table infosysemployee drop mobile;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from infosysemployee;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select * from infosysemployee limit 1,1;
++-----+--------+------+--------+-------+--------------+---------+---------+---------+
+| eId | name   | city | salary | State | Designation1 | Country | Pancard | adharno |
++-----+--------+------+--------+-------+--------------+---------+---------+---------+
+|   2 | varsha | pune |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+--------+------+--------+-------+--------------+---------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from infosysemployee limit 0,1;
++-----+---------+------+--------+-------+--------------+---------+---------+---------+
+| eId | name    | city | salary | State | Designation1 | Country | Pancard | adharno |
++-----+---------+------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan | hyd  |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+---------+------+--------+-------+--------------+---------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from infosysemployee limit 0,5;
++-----+----------+-------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city  | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+-------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd   |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune  |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune  |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune  |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+-------+--------+-------+--------------+---------+---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from infosysemployee limit 0,10
+    -> ;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select * from infosysemployee limit 0,1
+    -> ;
++-----+---------+------+--------+-------+--------------+---------+---------+---------+
+| eId | name    | city | salary | State | Designation1 | Country | Pancard | adharno |
++-----+---------+------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan | hyd  |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+---------+------+--------+-------+--------------+---------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from infosysemployee limit 0,2
+    -> ;
++-----+---------+------+--------+-------+--------------+---------+---------+---------+
+| eId | name    | city | salary | State | Designation1 | Country | Pancard | adharno |
++-----+---------+------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan | hyd  |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha  | pune |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+---------+------+--------+-------+--------------+---------+---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from infosysemployee order by salary desc;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select * from infosysemployee order by salary desc limit 1,1;
++-----+-------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name  | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+-------+--------+--------+-------+--------------+---------+---------+---------+
+|   6 | shiva | jaipur |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+-------+--------+--------+-------+--------------+---------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from infosysemployee order by salary desc limit 1,0;
+Empty set (0.00 sec)
+
+mysql> select * from infosysemployee order by salary desc limit 0,1;
++-----+------+-------+--------+-------+--------------+---------+---------+---------+
+| eId | name | city  | salary | State | Designation1 | Country | Pancard | adharno |
++-----+------+-------+--------+-------+--------------+---------+---------+---------+
+|   7 | joe  | Delhi |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+------+-------+--------+-------+--------------+---------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from infosysemployee order by salary desc limit 0,2;
++-----+-------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name  | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+-------+--------+--------+-------+--------------+---------+---------+---------+
+|   7 | joe   | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva | jaipur |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+-------+--------+--------+-------+--------------+---------+---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from infosysemployee order by salary desc limit 1,2;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from infosysemployee;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select max(salary) infosysEmployee;
+ERROR 1054 (42S22): Unknown column 'salary' in 'field list'
+mysql> select max(salary)  from infosysEmployee;
++-------------+
+| max(salary) |
++-------------+
+|       96584 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary)  from infosysEmployee where (select max(salary) from infosysEmployee);
+       select max(salary)  from infosysEmployee where (select max(salary) from infosysEmployee);select max(salary)  from infosysEmployee where (select max(salary) from infosysEmployee); select max(salary)  from infosysEmployee where (select max(salary) from infosysEmployee); ) from infosysEmployee);
++-------------+
+| max(salary) |
++-------------+
+|       96584 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) infosysEmployee;
+ERROR 1054 (42S22): Unknown column 'salary' in 'field list'
+mysql> select max(salary) from infosysEmployee;
++-------------+
+| max(salary) |
++-------------+
+|       96584 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select  from infosysEmployee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from infosysEmployee' at line 1
+mysql> select * from infosysEmployee;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> update infosysEmployee set salary=54321 where eid=6
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update infosysEmployee set salary=84321 where eid=8
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from infosysEmployee;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select * from infosysEmployee order by salary;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select * from infosysEmployee order by salary desc;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select max(salary) from infosysEmployee where salary < (select max(salary) from infosysEmployee);
++-------------+
+| max(salary) |
++-------------+
+|       84321 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from infosysEmployee where salary < (select max(salary) from infosysEmployee);
