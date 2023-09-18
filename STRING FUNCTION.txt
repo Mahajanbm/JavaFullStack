@@ -1,0 +1,440 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 3pm                |
+| aws                |
+| awsbatch           |
+| awsdemo            |
+| bank               |
+| bbb                |
+| books              |
+| cs                 |
+| dd                 |
+| dddd               |
+| demo               |
+| demo1              |
+| demo23             |
+| demodemo           |
+| entity             |
+| fueldemo           |
+| fullstack          |
+| fullstackdemo      |
+| heena              |
+| impact22           |
+| impactjava         |
+| information_schema |
+| javademo           |
+| mmmmm              |
+| mysql              |
+| mysqldemo          |
+| performance_schema |
+| proj               |
+| project            |
+| projectdemo        |
+| sakila             |
+| sp                 |
+| student            |
+| super20            |
+| svce               |
+| sys                |
+| world              |
++--------------------+
+37 rows in set (0.17 sec)
+
+mysql> use mysqldemo;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_mysqldemo |
++---------------------+
+| infosysemployee     |
+| taldemo             |
+| tblcategory         |
+| tblemp              |
+| tblemp1             |
+| tblproduct          |
+| tblstudent          |
++---------------------+
+7 rows in set (0.02 sec)
+
+mysql> desc tblStudent;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| city  | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from tblStudent;
++----+-------+--------+
+| id | name  | city   |
++----+-------+--------+
+|  1 | tim   | mumbai |
+|  2 | tim   | mumbai |
+|  3 | bob   | pune   |
+|  4 | joe   | hyd    |
+|  5 | vijay | hyd    |
++----+-------+--------+
+5 rows in set (0.02 sec)
+
+mysql> create  table tblDemo( id int primarey key,name varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primarey key,name varchar(50))' at line 1
+mysql> create  table tblDemo( id int primary key,name varchar(50));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from infosysEmployee;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.01 sec)
+
+mysql> select max(salary) from infosysEmployee;
++-------------+
+| max(salary) |
++-------------+
+|       96584 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select eid,name,city ,max(salary) from infosysEmployee;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'mysqldemo.infosysEmployee.eId'; this is incompatible with sql_mode=only_full_group_by
+mysql> select eid,name,city ,salary from infosysEmployee;
++-----+----------+--------+--------+
+| eid | name     | city   | salary |
++-----+----------+--------+--------+
+|   1 | mahajan  | hyd    |  12345 |
+|   2 | varsha   | pune   |  45612 |
+|   3 | tushar   | Delhi  |  41256 |
+|   4 | vijay    | pune   |  54123 |
+|   5 | shraddha | pune   |  74125 |
+|   6 | shiva    | jaipur |  54321 |
+|   7 | joe      | Delhi  |  96584 |
+|   8 | Payal    | Hyd    |  84321 |
+|   9 | tim      | Hyd    |  54632 |
+|  10 | bob      | Mumbai |  41632 |
+|  11 | NULL     | pune   |   NULL |
++-----+----------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select eid,name,city ,salary from infosysEmployee WHERE salary=(select max(salary) from infosysEmployee)
+;
++-----+------+-------+--------+
+| eid | name | city  | salary |
++-----+------+-------+--------+
+|   7 | joe  | Delhi |  96584 |
++-----+------+-------+--------+
+1 row in set (0.01 sec)
+
+mysql> select eid,name,city ,salary from infosysEmployee WHERE salary=(select max(salary) from infosysEmployeewhere salary >(select max(salary) from infosysEmployee));
+Empty set (0.00 sec)
+
+mysql> select eid,name,city ,salary from infosysEmployee WHERE salary=(select max(salary) from infosysEmployeewhere salary <(select max(salary) from infosysEmployee));
++-----+-------+------+--------+
+| eid | name  | city | salary |
++-----+-------+------+--------+
+|   8 | Payal | Hyd  |  84321 |
++-----+-------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from infosysEmployee;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select upper(name) from infosysEmployee;
++-------------+
+| upper(name) |
++-------------+
+| MAHAJAN     |
+| VARSHA      |
+| TUSHAR      |
+| VIJAY       |
+| SHRADDHA    |
+| SHIVA       |
+| JOE         |
+| PAYAL       |
+| TIM         |
+| BOB         |
+| NULL        |
++-------------+
+11 rows in set (0.00 sec)
+
+mysql> length(' mahajan');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'length(' mahajan')' at line 1
+mysql> select length(name) from infosysEmploee;
+ERROR 1146 (42S02): Table 'mysqldemo.infosysemploee' doesn't exist
+mysql> select length(name) from infosysEmployee;
++--------------+
+| length(name) |
++--------------+
+|            7 |
+|            6 |
+|            6 |
+|            5 |
+|            8 |
+|            5 |
+|            3 |
+|            5 |
+|            3 |
+|            3 |
+|         NULL |
++--------------+
+11 rows in set (0.00 sec)
+
+mysql> select * from infosysEmployee;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select concat(name,city) from infosysEmployee;
++-------------------+
+| concat(name,city) |
++-------------------+
+| mahajanhyd        |
+| varshapune        |
+| tusharDelhi       |
+| vijaypune         |
+| shraddhapune      |
+| shivajaipur       |
+| joeDelhi          |
+| PayalHyd          |
+| timHyd            |
+| bobMumbai         |
+| NULL              |
++-------------------+
+11 rows in set (0.01 sec)
+
+mysql> select concat(name,"   ",city) from infosysEmployee;
++-------------------------+
+| concat(name,"   ",city) |
++-------------------------+
+| mahajan   hyd           |
+| varsha   pune           |
+| tushar   Delhi          |
+| vijay   pune            |
+| shraddha   pune         |
+| shiva   jaipur          |
+| joe   Delhi             |
+| Payal   Hyd             |
+| tim   Hyd               |
+| bob   Mumbai            |
+| NULL                    |
++-------------------------+
+11 rows in set (0.00 sec)
+
+mysql> select * from infosysEmployee;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> create table demo1(salary float);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into demo1 values(1234.1235);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into demo1 values(878.1235675);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into demo1 values(8787.5675);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into demo1 values(9887.777777);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select format(salary) from demo1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') from demo1' at line 1
+mysql> select format(salary) as salary from demo1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as salary from demo1' at line 1
+mysql> select max(salary) as salary from demo1;
++---------+
+| salary  |
++---------+
+| 9887.78 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select Format(salary) as salary from demo1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') as salary from demo1' at line 1
+mysql> select * from demo1;
++---------+
+| salary  |
++---------+
+| 1234.12 |
+| 878.124 |
+| 8787.57 |
+| 9887.78 |
++---------+
+4 rows in set (0.00 sec)
+
+mysql> select Format(salary,2) as salary from demo1;
++----------+
+| salary   |
++----------+
+| 1,234.12 |
+| 878.12   |
+| 8,787.57 |
+| 9,887.78 |
++----------+
+4 rows in set (0.01 sec)
+
+mysql> select Format(salary,3) as salary from demo1;
++-----------+
+| salary    |
++-----------+
+| 1,234.124 |
+| 878.124   |
+| 8,787.567 |
+| 9,887.777 |
++-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from demo1;
++---------+
+| salary  |
++---------+
+| 1234.12 |
+| 878.124 |
+| 8787.57 |
+| 9887.78 |
++---------+
+4 rows in set (0.00 sec)
+
+mysql> select Format(salary,2) as salary from demo1;
++----------+
+| salary   |
++----------+
+| 1,234.12 |
+| 878.12   |
+| 8,787.57 |
+| 9,887.78 |
++----------+
+4 rows in set (0.00 sec)
+
+mysql> select Format(salary,4) as salary from demo1;
++------------+
+| salary     |
++------------+
+| 1,234.1235 |
+| 878.1236   |
+| 8,787.5674 |
+| 9,887.7773 |
++------------+
+4 rows in set (0.00 sec)
+
+mysql> select LEFT('MAHAJAN HYDERABAD',2);
++-----------------------------+
+| LEFT('MAHAJAN HYDERABAD',2) |
++-----------------------------+
+| MA                          |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select LEFT('MAHAJAN HYDERABAD',5);
++-----------------------------+
+| LEFT('MAHAJAN HYDERABAD',5) |
++-----------------------------+
+| MAHAJ                       |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select LEFT('MAHAJAN HYDERABAD',10);
++------------------------------+
+| LEFT('MAHAJAN HYDERABAD',10) |
++------------------------------+
+| MAHAJAN HY                   |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select RIGHT('MAHAJAN HYDERABAD',10);
++-------------------------------+
+| RIGHT('MAHAJAN HYDERABAD',10) |
++-------------------------------+
+|  HYDERABAD                    |
++-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select RIGHT('MAHAJAN HYDERABAD',1);
++------------------------------+
+| RIGHT('MAHAJAN HYDERABAD',1) |
++------------------------------+
+| D                            |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select RIGHT('MAHAJAN HYDERABAD',2);
++------------------------------+
+| RIGHT('MAHAJAN HYDERABAD',2) |
++------------------------------+
+| AD                           |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql>
