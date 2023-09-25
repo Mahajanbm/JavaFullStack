@@ -1,0 +1,744 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use mysqldemo;
+Database changed
+mysql> show tbales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tbales' at line 1
+mysql> show tables;
++---------------------+
+| Tables_in_mysqldemo |
++---------------------+
+| demo1               |
+| infosysemployee     |
+| taldemo             |
+| tblcategory         |
+| tbldemo             |
+| tblemp              |
+| tblemp1             |
+| tblproduct          |
+| tblstudent          |
++---------------------+
+9 rows in set (0.15 sec)
+
+mysql> select * from infosysEmployee;
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name     | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan  | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha   | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar   | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay    | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva    | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe      | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal    | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim      | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob      | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL     | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+----------+--------+--------+-------+--------------+---------+---------+---------+
+11 rows in set (0.01 sec)
+
+mysql> insert into infosysEmployee (name) values("kjbskfjdjf");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from infosysEmployee;
++-----+------------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name       | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+------------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | mahajan    | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | varsha     | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar     | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | vijay      | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | shraddha   | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | shiva      | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | joe        | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Payal      | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tim        | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | bob        | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | NULL       | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  12 | kjbskfjdjf | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+------------+--------+--------+-------+--------------+---------+---------+---------+
+12 rows in set (0.00 sec)
+
+mysql> update infosysemployee set name='tushar1';
+Query OK, 12 rows affected (0.02 sec)
+Rows matched: 12  Changed: 12  Warnings: 0
+
+mysql> select * from infosysEmployee;
++-----+---------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name    | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+---------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | tushar1 | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | tushar1 | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar1 | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | tushar1 | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | tushar1 | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | tushar1 | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | tushar1 | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | tushar1 | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tushar1 | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | tushar1 | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | tushar1 | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  12 | tushar1 | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+---------+--------+--------+-------+--------------+---------+---------+---------+
+12 rows in set (0.00 sec)
+
+mysql> insert into infosysEmployee (name) values("mahi");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into infosysEmployee (name) values("vishal");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into infosysEmployee (name) values("ajay");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from infosysEmployee;
++-----+---------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name    | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+---------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | tushar1 | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | tushar1 | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | tushar1 | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | tushar1 | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | tushar1 | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | tushar1 | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | tushar1 | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | tushar1 | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | tushar1 | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | tushar1 | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | tushar1 | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  12 | tushar1 | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  13 | mahi    | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  14 | vishal  | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  15 | ajay    | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+---------+--------+--------+-------+--------------+---------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> update infosysEmployee set name=REPLACE(name,'tushar1','Tushar');
+Query OK, 12 rows affected (0.02 sec)
+Rows matched: 15  Changed: 12  Warnings: 0
+
+mysql> select * from infosysEmployee;
++-----+--------+--------+--------+-------+--------------+---------+---------+---------+
+| eId | name   | city   | salary | State | Designation1 | Country | Pancard | adharno |
++-----+--------+--------+--------+-------+--------------+---------+---------+---------+
+|   1 | Tushar | hyd    |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | Tushar | pune   |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | Tushar | Delhi  |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | Tushar | pune   |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | Tushar | pune   |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | Tushar | jaipur |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | Tushar | Delhi  |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Tushar | Hyd    |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | Tushar | Hyd    |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | Tushar | Mumbai |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | Tushar | pune   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  12 | Tushar | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  13 | mahi   | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  14 | vishal | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  15 | ajay   | NULL   |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+--------+--------+--------+-------+--------------+---------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> update infosysEmployee set city=REPLACE(city,'jaipur','Jaipur RJ');
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 15  Changed: 1  Warnings: 0
+
+mysql> select * from infosysEmployee;
++-----+--------+-----------+--------+-------+--------------+---------+---------+---------+
+| eId | name   | city      | salary | State | Designation1 | Country | Pancard | adharno |
++-----+--------+-----------+--------+-------+--------------+---------+---------+---------+
+|   1 | Tushar | hyd       |  12345 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   2 | Tushar | pune      |  45612 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   3 | Tushar | Delhi     |  41256 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   4 | Tushar | pune      |  54123 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   5 | Tushar | pune      |  74125 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   6 | Tushar | Jaipur RJ |  54321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   7 | Tushar | Delhi     |  96584 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   8 | Tushar | Hyd       |  84321 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|   9 | Tushar | Hyd       |  54632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  10 | Tushar | Mumbai    |  41632 | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  11 | Tushar | pune      |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  12 | Tushar | NULL      |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  13 | mahi   | NULL      |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  14 | vishal | NULL      |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
+|  15 | ajay   | NULL      |   NULL | NULL  | NULL         | NULL    | NULL    | NULL    |
++-----+--------+-----------+--------+-------+--------------+---------+---------+---------+
+15 rows in set (0.00 sec)
+
+mysql> select SUBSTRING('WELCOME TO PUNE',1);
++--------------------------------+
+| SUBSTRING('WELCOME TO PUNE',1) |
++--------------------------------+
+| WELCOME TO PUNE                |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select SUBSTRING('WELCOME TO PUNE',2);
++--------------------------------+
+| SUBSTRING('WELCOME TO PUNE',2) |
++--------------------------------+
+| ELCOME TO PUNE                 |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select SUBSTRING('WELCOME TO PUNE',3);
++--------------------------------+
+| SUBSTRING('WELCOME TO PUNE',3) |
++--------------------------------+
+| LCOME TO PUNE                  |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select SUBSTRING('WELCOME TO PUNE',1,2);
++----------------------------------+
+| SUBSTRING('WELCOME TO PUNE',1,2) |
++----------------------------------+
+| WE                               |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> Select TRIM("       mahajan  ");
++--------------------------+
+| TRIM("       mahajan  ") |
++--------------------------+
+| mahajan                  |
++--------------------------+
+1 row in set (0.01 sec)
+
+mysql> select REVSERSE('mahajan');
+ERROR 1305 (42000): FUNCTION mysqldemo.REVSERSE does not exist
+mysql> select REVERSE('mahajan');
++--------------------+
+| REVERSE('mahajan') |
++--------------------+
+| najaham            |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql>  CREATE DATABASE ORG;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| 3pm                |
+| aws                |
+| awsbatch           |
+| awsdemo            |
+| bank               |
+| bbb                |
+| books              |
+| cs                 |
+| dd                 |
+| dddd               |
+| demo               |
+| demo1              |
+| demo23             |
+| demodemo           |
+| entity             |
+| fueldemo           |
+| fullstack          |
+| fullstackdemo      |
+| heena              |
+| impact22           |
+| impactjava         |
+| information_schema |
+| javademo           |
+| mmmmm              |
+| mysql              |
+| mysqldemo          |
+| org                |
+| performance_schema |
+| proj               |
+| project            |
+| projectdemo        |
+| sakila             |
+| sp                 |
+| student            |
+| super20            |
+| svce               |
+| sys                |
+| world              |
++--------------------+
+38 rows in set (0.02 sec)
+
+mysql> USE ORG;
+Database changed
+mysql>
+mysql> CREATE TABLE Worker (
+    ->  WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    ->  FIRST_NAME CHAR(25),
+    ->  LAST_NAME CHAR(25),
+    ->  SALARY INT(15),
+    ->  JOINING_DATE DATETIME,
+    ->  DEPARTMENT CHAR(25)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.10 sec)
+
+mysql>
+mysql> INSERT INTO Worker
+    ->  (WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+    ->          (001, 'Monika', 'Arora', 100000, '14-02-20 09.00.00', 'HR'),
+    ->          (002, 'Niharika', 'Verma', 80000, '14-06-11 09.00.00', 'Admin'),
+    ->          (003, 'Vishal', 'Singhal', 300000, '14-02-20 09.00.00', 'HR'),
+    ->          (004, 'Amitabh', 'Singh', 500000, '14-02-20 09.00.00', 'Admin'),
+    ->          (005, 'Vivek', 'Bhati', 500000, '14-06-11 09.00.00', 'Admin'),
+    ->          (006, 'Vipul', 'Diwan', 200000, '14-06-11 09.00.00', 'Account'),
+    ->          (007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account'),
+    ->          (008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin');
+Query OK, 8 rows affected, 8 warnings (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 8
+
+mysql>
+mysql> CREATE TABLE Bonus (
+    ->  WORKER_REF_ID INT,
+    ->  BONUS_AMOUNT INT(10),
+    ->  BONUS_DATE DATETIME,
+    ->  FOREIGN KEY (WORKER_REF_ID)
+    ->          REFERENCES Worker(WORKER_ID)
+    ->         ON DELETE CASCADE
+    -> );
+Query OK, 0 rows affected, 1 warning (0.07 sec)
+
+mysql>
+mysql> INSERT INTO Bonus
+    ->  (WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+    ->          (001, 5000, '16-02-20'),
+    ->          (002, 3000, '16-06-11'),
+    ->          (003, 4000, '16-02-20'),
+    ->          (001, 4500, '16-02-20'),
+    ->          (002, 3500, '16-06-11');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> [22/09, 4:06 pm] Mahi: CREATE TABLE Title (
+    ->  WORKER_REF_ID INT,
+    ->  WORKER_TITLE CHAR(25),
+    ->  AFFECTED_FROM DATETIME,
+    ->  FOREIGN KEY (WORKER_REF_ID)
+    ->          REFERENCES Worker(WORKER_ID)
+    ->         ON DELETE CASCADE
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[22/09, 4:06 pm] Mahi: CREATE TABLE Title (
+        WORKER_REF_ID INT,
+        WORKER_TITLE CH' at line 1
+mysql>
+mysql> INSERT INTO Title
+    ->  (WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+    ->  (001, 'Manager', '2016-02-20 00:00:00'),
+    ->  (002, 'Executive', '2016-06-11 00:00:00'),
+    ->  (008, 'Executive', '2016-06-11 00:00:00'),
+    ->  (005, 'Manager', '2016-06-11 00:00:00'),
+    ->  (004, 'Asst. Manager', '2016-06-11 00:00:00'),
+    ->  (007, 'Executive', '2016-06-11 00:00:00'),
+    ->  (006, 'Lead', '2016-06-11 00:00:00'),
+    ->  (003, 'Lead', '2016-06-11 00:00:00');
+ERROR 1146 (42S02): Table 'org.title' doesn't exist
+mysql>  CREATE DATABASE ORG;
+ERROR 1007 (HY000): Can't create database 'org'; database exists
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| 3pm                |
+| aws                |
+| awsbatch           |
+| awsdemo            |
+| bank               |
+| bbb                |
+| books              |
+| cs                 |
+| dd                 |
+| dddd               |
+| demo               |
+| demo1              |
+| demo23             |
+| demodemo           |
+| entity             |
+| fueldemo           |
+| fullstack          |
+| fullstackdemo      |
+| heena              |
+| impact22           |
+| impactjava         |
+| information_schema |
+| javademo           |
+| mmmmm              |
+| mysql              |
+| mysqldemo          |
+| org                |
+| performance_schema |
+| proj               |
+| project            |
+| projectdemo        |
+| sakila             |
+| sp                 |
+| student            |
+| super20            |
+| svce               |
+| sys                |
+| world              |
++--------------------+
+38 rows in set (0.00 sec)
+
+mysql> USE ORG;
+Database changed
+mysql>
+mysql> CREATE TABLE Worker (
+    ->  WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    ->  FIRST_NAME CHAR(25),
+    ->  LAST_NAME CHAR(25),
+    ->  SALARY INT(15),
+    ->  JOINING_DATE DATETIME,
+    ->  DEPARTMENT CHAR(25)
+    -> );
+ERROR 1050 (42S01): Table 'worker' already exists
+mysql>
+mysql> INSERT INTO Worker
+    ->  (WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+    ->          (001, 'Monika', 'Arora', 100000, '14-02-20 09.00.00', 'HR'),
+    ->          (002, 'Niharika', 'Verma', 80000, '14-06-11 09.00.00', 'Admin'),
+    ->          (003, 'Vishal', 'Singhal', 300000, '14-02-20 09.00.00', 'HR'),
+    ->          (004, 'Amitabh', 'Singh', 500000, '14-02-20 09.00.00', 'Admin'),
+    ->          (005, 'Vivek', 'Bhati', 500000, '14-06-11 09.00.00', 'Admin'),
+    ->          (006, 'Vipul', 'Diwan', 200000, '14-06-11 09.00.00', 'Account'),
+    ->          (007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account'),
+    ->          (008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin');
+ERROR 1062 (23000): Duplicate entry '1' for key 'worker.PRIMARY'
+mysql>
+mysql> CREATE TABLE Bonus (
+    ->  WORKER_REF_ID INT,
+    ->  BONUS_AMOUNT INT(10),
+    ->  BONUS_DATE DATETIME,
+    ->  FOREIGN KEY (WORKER_REF_ID)
+    ->          REFERENCES Worker(WORKER_ID)
+    ->         ON DELETE CASCADE
+    -> );
+ERROR 1050 (42S01): Table 'bonus' already exists
+mysql>
+mysql> INSERT INTO Bonus
+    ->  (WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+    ->          (001, 5000, '16-02-20'),
+    ->          (002, 3000, '16-06-11'),
+    ->          (003, 4000, '16-02-20'),
+    ->          (001, 4500, '16-02-20'),
+    ->          (002, 3500, '16-06-11');
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Title (
+    ->  WORKER_REF_ID INT,
+    ->  WORKER_TITLE CHAR(25),
+    ->  AFFECTED_FROM DATETIME,
+    ->  FOREIGN KEY (WORKER_REF_ID)
+    ->          REFERENCES Worker(WORKER_ID)
+    ->         ON DELETE CASCADE
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql>
+mysql> INSERT INTO Title
+    ->  (WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+    ->  (001, 'Manager', '2016-02-20 00:00:00'),
+    ->  (002, 'Executive', '2016-06-11 00:00:00'),
+    ->  (008, 'Executive', '2016-06-11 00:00:00'),
+    ->  (005, 'Manager', '2016-06-11 00:00:00'),
+    ->  (004, 'Asst. Manager', '2016-06-11 00:00:00'),
+    ->  (007, 'Executive', '2016-06-11 00:00:00'),
+    ->  (006, 'Lead', '2016-06-11 00:00:00'),
+    ->  (003, 'Lead', '2016-06-11 00:00:00');
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> use org
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_org |
++---------------+
+| bonus         |
+| title         |
+| worker        |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> desc worker
+    -> ;
++--------------+----------+------+-----+---------+----------------+
+| Field        | Type     | Null | Key | Default | Extra          |
++--------------+----------+------+-----+---------+----------------+
+| WORKER_ID    | int      | NO   | PRI | NULL    | auto_increment |
+| FIRST_NAME   | char(25) | YES  |     | NULL    |                |
+| LAST_NAME    | char(25) | YES  |     | NULL    |                |
+| SALARY       | int      | YES  |     | NULL    |                |
+| JOINING_DATE | datetime | YES  |     | NULL    |                |
+| DEPARTMENT   | char(25) | YES  |     | NULL    |                |
++--------------+----------+------+-----+---------+----------------+
+6 rows in set (0.02 sec)
+
+mysql> select CURDATE();
++------------+
+| CURDATE()  |
++------------+
+| 2023-09-25 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select CURRENTDATE();
+ERROR 1305 (42000): FUNCTION org.CURRENTDATE does not exist
+mysql> select CURRENT_DATE();
++----------------+
+| CURRENT_DATE() |
++----------------+
+| 2023-09-25     |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM WORKER
+    -> ;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2014-06-11 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2014-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.01 sec)
+
+mysql> SELECT DAY(JOINING_DATE);
+ERROR 1054 (42S22): Unknown column 'JOINING_DATE' in 'field list'
+mysql> SELECT DAY(JOINING_DATE) FROM WORKER;
++-------------------+
+| DAY(JOINING_DATE) |
++-------------------+
+|                20 |
+|                11 |
+|                20 |
+|                20 |
+|                11 |
+|                11 |
+|                20 |
+|                11 |
++-------------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM WORKER;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2014-06-11 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2014-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM WORKER WHERE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SELECT * FROM WORKER;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2014-06-11 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2014-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM WORKER WHERE JOINIG_DATE=2014-02-20;
+ERROR 1054 (42S22): Unknown column 'JOINIG_DATE' in 'where clause'
+mysql> SELECT * FROM WORKER WHERE JOINING_DATE=2014-02-20;
+Empty set, 1 warning (0.00 sec)
+
+mysql> SELECT * FROM WORKER WHERE JOINING_DATE=2014-02-20 09:00:00;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '09:00:00' at line 1
+mysql> SELECT * FROM WORKER WHERE JOINING_DATE='2014-02-20 09:00:00';
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         3 | Vishal     | Singhal   | 300000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT MONTH(JOINING_DATE) FROM WORKER;
++---------------------+
+| MONTH(JOINING_DATE) |
++---------------------+
+|                   2 |
+|                   6 |
+|                   2 |
+|                   2 |
+|                   6 |
+|                   6 |
+|                   1 |
+|                   4 |
++---------------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM WORKER;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2014-02-20 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2014-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2014-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2014-02-20 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2014-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2014-06-11 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2014-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2014-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT YEAR(JOINING_DATE) FROM WORKER;
++--------------------+
+| YEAR(JOINING_DATE) |
++--------------------+
+|               2014 |
+|               2014 |
+|               2014 |
+|               2014 |
+|               2014 |
+|               2014 |
+|               2014 |
+|               2014 |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> ABS(-5454);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ABS(-5454)' at line 1
+mysql> SELECT ABS(-5454);
++------------+
+| ABS(-5454) |
++------------+
+|       5454 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT ABS(5454);
++-----------+
+| ABS(5454) |
++-----------+
+|      5454 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ABS(0);
++--------+
+| ABS(0) |
++--------+
+|      0 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SQRT(25);
++----------+
+| SQRT(25) |
++----------+
+|        5 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SQRT(100);
++-----------+
+| SQRT(100) |
++-----------+
+|        10 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT POWER(5);
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'POWER'
+mysql> SELECT POWER();
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'POWER'
+mysql> SELECT POWER();SELECT POW();
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'POWER'
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'POW'
+mysql> SELECT POW();
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'POW'
+mysql> SELECT POWER(2,2);
++------------+
+| POWER(2,2) |
++------------+
+|          4 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT POWER(5,2);
++------------+
+| POWER(5,2) |
++------------+
+|         25 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT POWER(5,3);
++------------+
+| POWER(5,3) |
++------------+
+|        125 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT POW(5,2);
++----------+
+| POW(5,2) |
++----------+
+|       25 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(12345.2);
++----------------+
+| ROUND(12345.2) |
++----------------+
+|          12345 |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT ROUND(12345.9);
++----------------+
+| ROUND(12345.9) |
++----------------+
+|          12346 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(12345.6);
++----------------+
+| ROUND(12345.6) |
++----------------+
+|          12346 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql>
