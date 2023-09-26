@@ -1,0 +1,550 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use fullstackdemo;
+Database changed
+mysql> create table tblEmp1(id int ,name varchar(50),city varchar(50));
+ERROR 1050 (42S01): Table 'tblemp1' already exists
+mysql> create table tblEmp2(id int ,name varchar(50),city varchar(50));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table tblEmp4(id int ,name varchar(50),city varchar(50),salary float);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into tblemp1 values(101,'ajay','Delhi');
+ERROR 1062 (23000): Duplicate entry '101' for key 'tblemp1.PRIMARY'
+mysql> insert into tblemp2 values(101,'ajay','Delhi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblemp2 values(102,'joe','pune');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblemp2 values(103,'bob','mumbai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tblemp2;
++------+------+--------+
+| id   | name | city   |
++------+------+--------+
+|  101 | ajay | Delhi  |
+|  102 | joe  | pune   |
+|  103 | bob  | mumbai |
++------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into tblemp3 values(10,'akash','mumbai'.4545);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.4545)' at line 1
+mysql> insert into tblemp3 values(10,'akash','mumbai',4545);
+ERROR 1146 (42S02): Table 'fullstackdemo.tblemp3' doesn't exist
+mysql> insert into tblemp4 values(10,'akash','mumbai',4545);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblemp4 values(11,'tim','pune',98787);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblemp4 values(12,'sam','delhi',87878);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tblEmp4;
++------+-------+--------+--------+
+| id   | name  | city   | salary |
++------+-------+--------+--------+
+|   10 | akash | mumbai |   4545 |
+|   11 | tim   | pune   |  98787 |
+|   12 | sam   | delhi  |  87878 |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from tblEmp2 union select * from tblEmp4;
+ERROR 1222 (21000): The used SELECT statements have a different number of columns
+mysql> select id from tblEmp2 union select id from tblEmp4;
++------+
+| id   |
++------+
+|  101 |
+|  102 |
+|  103 |
+|   10 |
+|   11 |
+|   12 |
++------+
+6 rows in set (0.01 sec)
+
+mysql> select id,name from tblEmp2 union select id,name from tblEmp4;
++------+-------+
+| id   | name  |
++------+-------+
+|  101 | ajay  |
+|  102 | joe   |
+|  103 | bob   |
+|   10 | akash |
+|   11 | tim   |
+|   12 | sam   |
++------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into tblemp4 values(12,'mahi','delhi',87878);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblemp4 values(102,'tushar','delhi',87878);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select id,name from tblEmp2 union select id,name from tblEmp4;
++------+--------+
+| id   | name   |
++------+--------+
+|  101 | ajay   |
+|  102 | joe    |
+|  103 | bob    |
+|   10 | akash  |
+|   11 | tim    |
+|   12 | sam    |
+|   12 | mahi   |
+|  102 | tushar |
++------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select id from tblEmp2 union select id from tblEmp4;
++------+
+| id   |
++------+
+|  101 |
+|  102 |
+|  103 |
+|   10 |
+|   11 |
+|   12 |
++------+
+6 rows in set (0.00 sec)
+
+mysql> select id,name from tblEmp2 union select id,name from tblEmp4;
++------+--------+
+| id   | name   |
++------+--------+
+|  101 | ajay   |
+|  102 | joe    |
+|  103 | bob    |
+|   10 | akash  |
+|   11 | tim    |
+|   12 | sam    |
+|   12 | mahi   |
+|  102 | tushar |
++------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select id from tblEmp2 union all select id from tblEmp4;
++------+
+| id   |
++------+
+|  101 |
+|  102 |
+|  103 |
+|   10 |
+|   11 |
+|   12 |
+|   12 |
+|  102 |
++------+
+8 rows in set (0.00 sec)
+
+mysql> create table tblEmp5(id int,name varchar
+    -> (50),city varchar(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into tblemp5values(101,'mahajan','delhi',87878);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '101,'mahajan','delhi',87878)' at line 1
+mysql> insert into tblemp5 values(101,'mahajan','delhi',87878);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into tblemp5 values(101,'mahajan','delhi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tblemp5 values(103,'mahajan','delhi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblemp5 values(105,'mahi','delhi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tblemp5 values(106,'mmmm','delhi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tblemp5;
++------+---------+-------+
+| id   | name    | city  |
++------+---------+-------+
+|  101 | mahajan | delhi |
+|  103 | mahajan | delhi |
+|  105 | mahi    | delhi |
+|  106 | mmmm    | delhi |
++------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select id from tblEmp2 union all select id from tblEmp4 union select id from tblemp5;
++------+
+| id   |
++------+
+|  101 |
+|  102 |
+|  103 |
+|   10 |
+|   11 |
+|   12 |
+|  105 |
+|  106 |
++------+
+8 rows in set (0.00 sec)
+
+mysql> select id from tblEmp2 union all select id from tblEmp4 union all select id from tblemp5;
++------+
+| id   |
++------+
+|  101 |
+|  102 |
+|  103 |
+|   10 |
+|   11 |
+|   12 |
+|   12 |
+|  102 |
+|  101 |
+|  103 |
+|  105 |
+|  106 |
++------+
+12 rows in set (0.00 sec)
+
+mysql> show tables;
++-------------------------+
+| Tables_in_fullstackdemo |
++-------------------------+
+| tbldata                 |
+| tbldata1                |
+| tbldata12               |
+| tbldemo                 |
+| tbldemo1                |
+| tbldemo3                |
+| tbldemo6                |
+| tblemp                  |
+| tblemp1                 |
+| tblemp2                 |
+| tblemp4                 |
+| tblemp5                 |
+| tblemployee             |
+| tblemployee2            |
+| tblorder                |
+| tblproduct1             |
+| tblstud                 |
+| tblstudent              |
+| tblstudentdemo          |
++-------------------------+
+19 rows in set (0.02 sec)
+
+mysql> select * from tblEmployee;
++------+---------+---------+
+| id   | name    | salary  |
++------+---------+---------+
+|  102 | tushar  | 12345.5 |
+|  103 | joe     |    8785 |
+|  104 | bob     |    8785 |
+|  105 | varsha  |    8785 |
+|  106 | shradda |  879465 |
+|  107 | tim     |   55555 |
+|  108 | ashok   |   12345 |
++------+---------+---------+
+7 rows in set (0.01 sec)
+
+mysql> select * from tblEmployee2;
+Empty set (0.01 sec)
+
+mysql> select * from tblEmp;
++------+--------+------+-------+---------+
+| id   | name   | city | state | country |
++------+--------+------+-------+---------+
+|  101 | mahi   | hyd  | TS    | IND     |
+|  102 | varsha | pune | MH    | India   |
++------+--------+------+-------+---------+
+2 rows in set (0.02 sec)
+
+mysql> insert into tblemployee values(109,'joe',123);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tblEmployee2;
+Empty set (0.00 sec)
+
+mysql> select * from tblEmployee;
++------+---------+---------+
+| id   | name    | salary  |
++------+---------+---------+
+|  102 | tushar  | 12345.5 |
+|  103 | joe     |    8785 |
+|  104 | bob     |    8785 |
+|  105 | varsha  |    8785 |
+|  106 | shradda |  879465 |
+|  107 | tim     |   55555 |
+|  108 | ashok   |   12345 |
+|  109 | joe     |     123 |
++------+---------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select max(salary) tblemployee;
+ERROR 1054 (42S22): Unknown column 'salary' in 'field list'
+mysql> select max(salary) from tblemployee;
++-------------+
+| max(salary) |
++-------------+
+|      879465 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select max(salary),min(salary) from tblemployee;
++-------------+-------------+
+| max(salary) | min(salary) |
++-------------+-------------+
+|      879465 |         123 |
++-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from tblEmployee;
++------+---------+---------+
+| id   | name    | salary  |
++------+---------+---------+
+|  102 | tushar  | 12345.5 |
+|  103 | joe     |    8785 |
+|  104 | bob     |    8785 |
+|  105 | varsha  |    8785 |
+|  106 | shradda |  879465 |
+|  107 | tim     |   55555 |
+|  108 | ashok   |   12345 |
+|  109 | joe     |     123 |
++------+---------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from tblEmployee where salary in(select Max(salary) from tblemployee);
++------+---------+--------+
+| id   | name    | salary |
++------+---------+--------+
+|  106 | shradda | 879465 |
++------+---------+--------+
+1 row in set (0.01 sec)
+
+mysql> select * from tblEmployee where salary in(select min(salary) from tblemployee);
++------+------+--------+
+| id   | name | salary |
++------+------+--------+
+|  109 | joe  |    123 |
++------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from tblEmployee where salary in(select min(salary),max(salary) from tblemployee);
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select * from tblEmployee where salary in(select min(salary) from tblemployee union select ,max(salary)from tblEmployee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',max(salary) from tblEmployee)' at line 1
+mysql> select * from tblEmployee where salary in(select min(salary) from tblemployee union select max(salary) from tblEmployee);
++------+---------+--------+
+| id   | name    | salary |
++------+---------+--------+
+|  106 | shradda | 879465 |
+|  109 | joe     |    123 |
++------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from tblemp2;
++------+------+--------+
+| id   | name | city   |
++------+------+--------+
+|  101 | ajay | Delhi  |
+|  102 | joe  | pune   |
+|  103 | bob  | mumbai |
++------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from tblemp4;
++------+--------+--------+--------+
+| id   | name   | city   | salary |
++------+--------+--------+--------+
+|   10 | akash  | mumbai |   4545 |
+|   11 | tim    | pune   |  98787 |
+|   12 | sam    | delhi  |  87878 |
+|   12 | mahi   | delhi  |  87878 |
+|  102 | tushar | delhi  |  87878 |
++------+--------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from tblemp5;
++------+---------+-------+
+| id   | name    | city  |
++------+---------+-------+
+|  101 | mahajan | delhi |
+|  103 | mahajan | delhi |
+|  105 | mahi    | delhi |
+|  106 | mmmm    | delhi |
++------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from tblemp2;
++------+------+--------+
+| id   | name | city   |
++------+------+--------+
+|  101 | ajay | Delhi  |
+|  102 | joe  | pune   |
+|  103 | bob  | mumbai |
++------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select id from tblemp2 INTERSECT select id from tblemp5;
++------+
+| id   |
++------+
+|  101 |
+|  103 |
++------+
+2 rows in set (0.00 sec)
+
+mysql> select id from tblemp2 INTERSECT select id from tblemp5 INTERSECT SELECT id from tblemp4;
+Empty set (0.00 sec)
+
+mysql> select name from tblemp2 INTERSECT select name from tblemp5 INTERSECT SELECT name from tblemp4;
+Empty set (0.00 sec)
+
+mysql> select * from tblemp4;
++------+--------+--------+--------+
+| id   | name   | city   | salary |
++------+--------+--------+--------+
+|   10 | akash  | mumbai |   4545 |
+|   11 | tim    | pune   |  98787 |
+|   12 | sam    | delhi  |  87878 |
+|   12 | mahi   | delhi  |  87878 |
+|  102 | tushar | delhi  |  87878 |
++------+--------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from tblemp2;
++------+------+--------+
+| id   | name | city   |
++------+------+--------+
+|  101 | ajay | Delhi  |
+|  102 | joe  | pune   |
+|  103 | bob  | mumbai |
++------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from tblemp5;
++------+---------+-------+
+| id   | name    | city  |
++------+---------+-------+
+|  101 | mahajan | delhi |
+|  103 | mahajan | delhi |
+|  105 | mahi    | delhi |
+|  106 | mmmm    | delhi |
++------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into tblemp2 values(109,'mahi','pune');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select name from tblemp2 INTERSECT select name from tblemp5 INTERSECT SELECT name from tblemp4;
++------+
+| name |
++------+
+| mahi |
++------+
+1 row in set (0.01 sec)
+
+mysql> create table product(id int primary key auto_increment,name varchar(50),descr varchar(50));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table category(cid int primary key auto_increment,cname varchar(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into product values(101,"samsung mobile","This is samsung");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product values(102,"samsung TV","This is samsung TV");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product values(102,"godrej","This is samsung fridge");
+ERROR 1062 (23000): Duplicate entry '102' for key 'product.PRIMARY'
+mysql> insert into product values(103,"godrej","This is samsung fridge");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product values(104,"cooler","This is  cooler");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into category values(1,"Electronic");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into category values(2,"sports");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into category values(3,"grossary");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from product;
++-----+----------------+------------------------+
+| id  | name           | descr                  |
++-----+----------------+------------------------+
+| 101 | samsung mobile | This is samsung        |
+| 102 | samsung TV     | This is samsung TV     |
+| 103 | godrej         | This is samsung fridge |
+| 104 | cooler         | This is  cooler        |
++-----+----------------+------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from category;
++-----+------------+
+| cid | cname      |
++-----+------------+
+|   1 | Electronic |
+|   2 | sports     |
+|   3 | grossary   |
++-----+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into category values(101,"grossary");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from category;
++-----+------------+
+| cid | cname      |
++-----+------------+
+|   1 | Electronic |
+|   2 | sports     |
+|   3 | grossary   |
+| 101 | grossary   |
++-----+------------+
+4 rows in set (0.00 sec)
+
+mysql> select id,name,cid,cname from product join category cid=id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=id' at line 1
+mysql> select id,name,cid,cname from product join category id=cid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=cid' at line 1
+mysql> select p1.id,p.1name,c.cid,c.cname from product p1 join category c c.cid=p1.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'c.cid=p1.id' at line 1
+mysql> select id,name,cid,cname from product join category on id=cid;
++-----+----------------+-----+----------+
+| id  | name           | cid | cname    |
++-----+----------------+-----+----------+
+| 101 | samsung mobile | 101 | grossary |
++-----+----------------+-----+----------+
+1 row in set (0.00 sec)
+
+mysql> select p1.id,p.1name,c.cid,c.cname from product p1 join category c  on c.cid=p1.id;
+ERROR 1054 (42S22): Unknown column 'p.1name' in 'field list'
+mysql> select p1.id,p1.name,c.cid,c.cname from product p1 join category c  on c.cid=p1.id;
++-----+----------------+-----+----------+
+| id  | name           | cid | cname    |
++-----+----------------+-----+----------+
+| 101 | samsung mobile | 101 | grossary |
++-----+----------------+-----+----------+
+1 row in set (0.00 sec)
+
+mysql> ^A
