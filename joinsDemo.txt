@@ -1,0 +1,798 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use fullstackdemo;
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_fullstackdemo |
++-------------------------+
+| category                |
+| product                 |
+| tbldata                 |
+| tbldata1                |
+| tbldata12               |
+| tbldemo                 |
+| tbldemo1                |
+| tbldemo3                |
+| tbldemo6                |
+| tblemp                  |
+| tblemp1                 |
+| tblemp2                 |
+| tblemp4                 |
+| tblemp5                 |
+| tblemployee             |
+| tblemployee2            |
+| tblorder                |
+| tblproduct1             |
+| tblstud                 |
+| tblstudent              |
+| tblstudentdemo          |
++-------------------------+
+21 rows in set (0.67 sec)
+
+mysql> create database Org;
+ERROR 1007 (HY000): Can't create database 'org'; database exists
+mysql> create database Company;
+Query OK, 1 row affected (0.09 sec)
+
+mysql> use company;
+Database changed
+mysql> create table tblEmployee(id int PRIMARY KEY,name varchar(50) NOT NULL,dept varchar(50) NOT NULL,salary float NOT NULL,gender varchar(20) NOT NULL,age int NOT NULL,city varchar(50) NOT NULL);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> create table tblProject(pId int PRIMARY KEY AUTO_INCREMENT,name varchar(50) not null,startdate DATETIME,endDate DATETIME,eid int , FOREGIN KEY(eid) REFERENCES tblEmployee(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'KEY(eid) REFERENCES tblEmployee(id))' at line 1
+mysql> create table tblProject(pId int PRIMARY KEY AUTO_INCREMENT,name varchar(50) not null,startdate DATETIME,endDate DATETIME,eid int , FOREGIN KEY (eid) REFERENCES tblEmployee (id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'KEY (eid) REFERENCES tblEmployee (id))' at line 1mysql> create table tblProject(pId int PRIMARY KEY AUTO_INCREMENT,name varchar(50) not null,startdate DATETIME,endDate DATETIME,eid int , FOREGIN KEY fk (eid) REFERENCES tblEmployee (id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'KEY fk (eid) REFERENCES tblEmployee (id))' at line 1
+mysql> create table tblProject(pId int PRIMARY KEY AUTO_INCREMENT,name varchar(50) not null,startdate DATETIME,endDate DATETIME,eid int , FOREIGN KEY fk (eid) REFERENCES tblEmployee (id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1001, 'John Doe', 'IT', 35000, 'Male', 25, 'London');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1002, 'Mary Smith', 'HR', 45000, 'Female', 27, 'London');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1003, 'James Brown', 'Finance', 50000, 'Male', 28, 'London');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1004, 'Mike Walker', 'Finance', 50000, 'Male', 28, 'London');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1005, 'Linda Jones', 'HR', 75000, 'Female', 26, 'London');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1006, 'Anurag Mohanty', 'IT', 35000, 'Male', 25, 'Mumbai');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1007, 'Priyanla Dewangan', 'HR', 45000, 'Female', 27, 'Mumbai');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1008, 'Sambit Mohanty', 'IT', 50000, 'Male', 28, 'Mumbai');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1009, 'Pranaya Kumar', 'IT', 50000, 'Male', 28, 'Mumbai');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1010, 'Hina Sharma', 'HR', 75000, 'Female', 26, 'Mumbai');
+ERROR 1054 (42S22): Unknown column 'Department' in 'field list'
+mysql> INSERT INTO tblEmployee (Id, `Name`, Dept, Salary, Gender, Age, City) VALUES (1001, 'John Doe', 'IT', 35000, 'Male', 25, 'London');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, Dept, Salary, Gender, Age, City) VALUES (1002, 'Mary Smith', 'HR', 45000, 'Female', 27, 'London');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, Dept, Salary, Gender, Age, City) VALUES (1003, 'James Brown', 'Finance', 50000, 'Male', 28, 'London');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, Dept, Salary, Gender, Age, City) VALUES (1004, 'Mike Walker', 'Finance', 50000, 'Male', 28, 'London');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, Dept, Salary, Gender, Age, City) VALUES (1005, 'Linda Jones', 'HR', 75000, 'Female', 26,'London');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, dept, Salary, Gender, Age, City) VALUES (1006, 'Anurag Mohanty', 'IT', 35000, 'Male', 25, 'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, dept, Salary, Gender, Age, City) VALUES (1007, 'Priyanla Dewangan', 'HR', 45000, 'Female', 27, 'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, Dept, Salary, Gender, Age, City) VALUES (1008, 'Sambit Mohanty', 'IT', 50000, 'Male', 28, 'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, Dept, Salary, Gender, Age, City) VALUES (1009, 'Pranaya Kumar', 'IT', 50000, 'Male', 28,'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO tblEmployee (Id, `Name`, Dept, Salary, Gender, Age, City) VALUES (1010, 'Hina Sharma', 'HR', 75000, 'Female', 26,'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> slect * from tblEmployee
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect * from tblEmployee' at line 1
+mysql> select * from tblEmployee;
++------+-------------------+---------+--------+--------+-----+--------+
+| id   | name              | dept    | salary | gender | age | city   |
++------+-------------------+---------+--------+--------+-----+--------+
+| 1001 | John Doe          | IT      |  35000 | Male   |  25 | London |
+| 1002 | Mary Smith        | HR      |  45000 | Female |  27 | London |
+| 1003 | James Brown       | Finance |  50000 | Male   |  28 | London |
+| 1004 | Mike Walker       | Finance |  50000 | Male   |  28 | London |
+| 1005 | Linda Jones       | HR      |  75000 | Female |  26 | London |
+| 1006 | Anurag Mohanty    | IT      |  35000 | Male   |  25 | Mumbai |
+| 1007 | Priyanla Dewangan | HR      |  45000 | Female |  27 | Mumbai |
+| 1008 | Sambit Mohanty    | IT      |  50000 | Male   |  28 | Mumbai |
+| 1009 | Pranaya Kumar     | IT      |  50000 | Male   |  28 | Mumbai |
+| 1010 | Hina Sharma       | HR      |  75000 | Female |  26 | Mumbai |
++------+-------------------+---------+--------+--------+-----+--------+
+10 rows in set (0.03 sec)
+
+mysql> INSERT INTO tblProject ( Title, ClientId,, StartDate, EndDate,id) VALUES
+    -> ('Develop ecommerse website from scratch', 1, 1003, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY)),
+    -> ('WordPress website for our company', 1, 1002, NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY)),
+    -> ('Manage our company servers', 2, 1007, NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY)),
+    -> ('Hosting account is not working', 3, 1009, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+    -> ('MySQL database from my desktop application', 4, 1010, NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY)),
+    -> ('Develop new WordPress plugin for my business website', 2, NULL, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY)),
+    -> ('Migrate web application and database to new server', 2, NULL, NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY)),
+    -> ('Android Application development', 4, 1004, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY)),
+    -> ('Hosting account is not working', 3, 1001, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+    -> ('MySQL database from my desktop application', 4, 1008, NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY)),
+    -> ('Develop new WordPress plugin for my business website', 2, NULL, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', StartDate, EndDate,id) VALUES
+('Develop ecommerse website from scratch', 1, 1' at line 1
+mysql> desc tblproject;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| pId       | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(50) | NO   |     | NULL    |                |
+| startdate | datetime    | YES  |     | NULL    |                |
+| endDate   | datetime    | YES  |     | NULL    |                |
+| eid       | int         | YES  | MUL | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.09 sec)
+
+mysql> INSERT INTO tblProject ( Title, , StartDate, EndDate,id) VALUES
+    -> ('Develop ecommerse website from scratch',  NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY,1)),
+    -> ('WordPress website for our company',  NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY,1)),
+    -> ('Manage our company servers',  NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY,2,)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY,3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY,4)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY,3)),
+    -> ('Migrate web application and database to new server',  NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY,1)),
+    -> ('Android Application development',  NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY,4)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY,3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY,2)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY,2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', StartDate, EndDate,id) VALUES
+('Develop ecommerse website from scratch',  NOW' at line 1
+mysql> desc tblproject;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| pId       | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(50) | NO   |     | NULL    |                |
+| startdate | datetime    | YES  |     | NULL    |                |
+| endDate   | datetime    | YES  |     | NULL    |                |
+| eid       | int         | YES  | MUL | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> INSERT INTO tblProject ( name , StartDate, EndDate,id) VALUES
+    -> ('Develop ecommerse website from scratch',  NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY,1)),
+    -> ('WordPress website for our company',  NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY,1)),
+    -> ('Manage our company servers',  NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY,2,)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY,3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY,4)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY,3)),
+    -> ('Migrate web application and database to new server',  NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY,1)),
+    -> ('Android Application development',  NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY,4)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY,3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY,2)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY,2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',1)),
+('WordPress website for our company',  NOW(), DATE_ADD(NOW(), INTERVAL 45 ' at line 2
+mysql> INSERT INTO tblProject ( name , StartDate, EndDate,id) VALUES
+    -> ('Develop ecommerse website from scratch',  NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY,1)),
+    -> ('WordPress website for our company',  NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY,1)),
+    -> ('Manage our company servers',  NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY,2)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY,3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY,4)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY,3)),
+    -> ('Migrate web application and database to new server',  NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY,1)),
+    -> ('Android Application development',  NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY,4)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY,3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY,2)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY,2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',1)),
+('WordPress website for our company',  NOW(), DATE_ADD(NOW(), INTERVAL 45 ' at line 2
+mysql> desc tblproject;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| pId       | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(50) | NO   |     | NULL    |                |
+| startdate | datetime    | YES  |     | NULL    |                |
+| endDate   | datetime    | YES  |     | NULL    |                |
+| eid       | int         | YES  | MUL | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> alter table tblProject modify name varchar(200);
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO tblProject ( name , StartDate, EndDate,id) VALUES
+    -> ('Develop ecommerse website from scratch',  NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY,1)),
+    -> ('WordPress website for our company',  NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY,1)),
+    -> ('Manage our company servers',  NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY,2)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY,3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY,4)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY,3)),
+    -> ('Migrate web application and database to new server',  NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY,1)),
+    -> ('Android Application development',  NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY,4)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY,3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY,2)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY,2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',1)),
+('WordPress website for our company',  NOW(), DATE_ADD(NOW(), INTERVAL 45 ' at line 2
+mysql> INSERT INTO tblProject ( name , StartDate, EndDate,id) VALUES
+    -> ('Develop ecommerse website from scratch',  NOW(), DATE_ADD(NOW(), 1)),
+    -> ('WordPress website for our company',  NOW(), DATE_ADD(NOW(), 1)),
+    -> ('Manage our company servers',  NOW(), DATE_ADD(NOW(),2)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(),3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), 4)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(),3)),
+    -> ('Migrate web application and database to new server',  NOW(), DATE_ADD(NOW(), 1)),
+    -> ('Android Application development',  NOW(), DATE_ADD(NOW(), 4)),
+    -> ('Hosting account is not working',  NOW(), DATE_ADD(NOW(), 3)),
+    -> ('MySQL database from my desktop application',  NOW(), DATE_ADD(NOW(), 2)),
+    -> ('Develop new WordPress plugin for my business website',  NOW(), DATE_ADD(NOW(),2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1)),
+('WordPress website for our company',  NOW(), DATE_ADD(NOW(), 1)),
+('Manage' at line 2
+mysql> CREATE TABLE Employee (
+    ->   Id INT PRIMARY KEY,
+    ->   Name VARCHAR(45) NOT NULL,
+    ->   Department VARCHAR(45) NOT NULL,
+    ->   Salary FLOAT NOT NULL,
+    ->   Gender VARCHAR(45) NOT NULL,
+    ->   Age INT NOT NULL,
+    ->   City VARCHAR(45) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1001, 'John Doe', 'IT', 35000, 'Male', 25, 'London');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1002, 'Mary Smith', 'HR', 45000, 'Female', 27, 'London');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1003, 'James Brown', 'Finance', 50000, 'Male', 28, 'London');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1004, 'Mike Walker', 'Finance', 50000, 'Male', 28, 'London');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1005, 'Linda Jones', 'HR', 75000, 'Female', 26, 'London');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1006, 'Anurag Mohanty', 'IT', 35000, 'Male',25, 'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1007, 'Priyanla Dewangan', 'HR', 45000, 'Female', 27, 'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1008, 'Sambit Mohanty', 'IT', 50000, 'Male',28, 'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1009, 'Pranaya Kumar', 'IT', 50000, 'Male', 28, 'Mumbai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Employee (Id, `Name`, Department, Salary, Gender, Age, City) VALUES (1010, 'Hina Sharma', 'HR', 75000, 'Female', 26, 'Mumbai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> CREATE TABLE Projects (
+    ->  ProjectId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     Title VARCHAR(200) NOT NULL,
+    ->     ClientId INT,
+    ->  EmployeeId INT,
+    ->     StartDate DATETIME,
+    ->     EndDate DATETIME,
+    ->     FOREIGN KEY (EmployeeId) REFERENCES Employee(Id)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Projects ( Title, ClientId, EmployeeId, StartDate, EndDate) VALUES
+    -> ('Develop ecommerse website from scratch', 1, 1003, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY)),
+    -> ('WordPress website for our company', 1, 1002, NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY)),
+    -> ('Manage our company servers', 2, 1007, NOW(), DATE_ADD(NOW(), INTERVAL 45 DAY)),
+    -> ('Hosting account is not working', 3, 1009, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+    -> ('MySQL database from my desktop application', 4, 1010, NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY)),
+    -> ('Develop new WordPress plugin for my business website', 2, NULL, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY)),
+    -> ('Migrate web application and database to new server', 2, NULL, NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY)),
+    -> ('Android Application development', 4, 1004, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY)),
+    -> ('Hosting account is not working', 3, 1001, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+    -> ('MySQL database from my desktop application', 4, 1008, NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY)),
+    -> ('Develop new WordPress plugin for my business website', 2, NULL, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY));
+Query OK, 11 rows affected (0.01 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++------+-------------------+------------+--------+--------+-----+--------+
+| Id   | Name              | Department | Salary | Gender | Age | City   |
++------+-------------------+------------+--------+--------+-----+--------+
+| 1001 | John Doe          | IT         |  35000 | Male   |  25 | London |
+| 1002 | Mary Smith        | HR         |  45000 | Female |  27 | London |
+| 1003 | James Brown       | Finance    |  50000 | Male   |  28 | London |
+| 1004 | Mike Walker       | Finance    |  50000 | Male   |  28 | London |
+| 1005 | Linda Jones       | HR         |  75000 | Female |  26 | London |
+| 1006 | Anurag Mohanty    | IT         |  35000 | Male   |  25 | Mumbai |
+| 1007 | Priyanla Dewangan | HR         |  45000 | Female |  27 | Mumbai |
+| 1008 | Sambit Mohanty    | IT         |  50000 | Male   |  28 | Mumbai |
+| 1009 | Pranaya Kumar     | IT         |  50000 | Male   |  28 | Mumbai |
+| 1010 | Hina Sharma       | HR         |  75000 | Female |  26 | Mumbai |
++------+-------------------+------------+--------+--------+-----+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from projects;
++-----------+------------------------------------------------------+----------+------------+---------------------+---------------------+
+| ProjectId | Title                                                | ClientId | EmployeeId | StartDate           | EndDate  |
++-----------+------------------------------------------------------+----------+------------+---------------------+---------------------+
+|         1 | Develop ecommerse website from scratch               |        1 |       1003 | 2023-10-10 18:47:45 | 2023-11-09 18:47:45 |
+|         2 | WordPress website for our company                    |        1 |       1002 | 2023-10-10 18:47:45 | 2023-11-24 18:47:45 |
+|         3 | Manage our company servers                           |        2 |       1007 | 2023-10-10 18:47:45 | 2023-11-24 18:47:45 |
+|         4 | Hosting account is not working                       |        3 |       1009 | 2023-10-10 18:47:45 | 2023-10-17 18:47:45 |
+|         5 | MySQL database from my desktop application           |        4 |       1010 | 2023-10-10 18:47:45 | 2023-10-25 18:47:45 |
+|         6 | Develop new WordPress plugin for my business website |        2 |       NULL | 2023-10-10 18:47:45 | 2023-10-20 18:47:45 |
+|         7 | Migrate web application and database to new server   |        2 |       NULL | 2023-10-10 18:47:45 | 2023-10-15 18:47:45 |
+|         8 | Android Application development                      |        4 |       1004 | 2023-10-10 18:47:45 | 2023-11-09 18:47:45 |       9
+|         9 | Hosting account is not working                       |        3 |       1001 | 2023-10-10 18:47:45 | 2023-10-17 18:47:45 |
+|        10 | MySQL database from my desktop application           |        4 |       1008 | 2023-10-10 18:47:45 | 2023-10-25 18:47:45 |
+|        11 | Develop new WordPress plugin for my business website |        2 |       NULL | 2023-10-10 18:47:45 | 2023-10-20 18:47:45 |
++-----------+------------------------------------------------------+----------+------------+---------------------+---------------------+
+11 rows in set (0.00 sec)
+       select id ,name,Depertment,city,title,Cilentid from emplloyee join projects on Employee.id=projects.Employeeid;
+ERROR 1146 (42S02): Table 'company.emplloyee' doesn't exist
+mysql> select id ,name,Depertment,city,title,Cilentid from employee join projects on Employee.id=projects.Employeeid;
+ERROR 1054 (42S22): Unknown column 'Depertment' in 'field list'
+mysql> select id ,name,Department,city,title,Cilentid from employee join projects on Employee.id=projects.Employeeid;
+ERROR 1054 (42S22): Unknown column 'Cilentid' in 'field list'
+mysql> select id ,name,Department,city,title,Clientid from employee join projects on Employee.id=projects.Employeeid;
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch     |        1 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development            |        4 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql>
+       select id ,name,Department,city,title,Clientid from employee inner join projects on Employee.id=projects.Employeeid;
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch     |        1 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development            |        4 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee left join projects on Employee.id=projects.Employeeid;
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch     |        1 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development            |        4 |
+| 1005 | Linda Jones       | HR         | London | NULL                                       |     NULL |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | NULL                                       |     NULL |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee right join projects on Employee.id=projects.Employeeid;
++------+-------------------+------------+--------+------------------------------------------------------+----------+
+| id   | name              | Department | city   | title                                                | Clientid |
++------+-------------------+------------+--------+------------------------------------------------------+----------+
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch               |        1 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company                    |        1 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                           |        2 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working                       |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application           |        4 |
+| NULL | NULL              | NULL       | NULL   | Develop new WordPress plugin for my business website |        2 |
+| NULL | NULL              | NULL       | NULL   | Migrate web application and database to new server   |        2 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development                      |        4 |
+| 1001 | John Doe          | IT         | London | Hosting account is not working                       |        3 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application           |        4 |
+| NULL | NULL              | NULL       | NULL   | Develop new WordPress plugin for my business website |        2 |
++------+-------------------+------------+--------+------------------------------------------------------+----------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee;
++------+-------------------+------------+--------+--------+-----+--------+
+| Id   | Name              | Department | Salary | Gender | Age | City   |
++------+-------------------+------------+--------+--------+-----+--------+
+| 1001 | John Doe          | IT         |  35000 | Male   |  25 | London |
+| 1002 | Mary Smith        | HR         |  45000 | Female |  27 | London |
+| 1003 | James Brown       | Finance    |  50000 | Male   |  28 | London |
+| 1004 | Mike Walker       | Finance    |  50000 | Male   |  28 | London |
+| 1005 | Linda Jones       | HR         |  75000 | Female |  26 | London |
+| 1006 | Anurag Mohanty    | IT         |  35000 | Male   |  25 | Mumbai |
+| 1007 | Priyanla Dewangan | HR         |  45000 | Female |  27 | Mumbai |
+| 1008 | Sambit Mohanty    | IT         |  50000 | Male   |  28 | Mumbai |
+| 1009 | Pranaya Kumar     | IT         |  50000 | Male   |  28 | Mumbai |
+| 1010 | Hina Sharma       | HR         |  75000 | Female |  26 | Mumbai |
++------+-------------------+------------+--------+--------+-----+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from projects;
++-----------+------------------------------------------------------+----------+------------+---------------------+---------------------+
+| ProjectId | Title                                                | ClientId | EmployeeId | StartDate           | EndDate
+  |
++-----------+------------------------------------------------------+----------+------------+---------------------+---------------------+
+|         1 | Develop ecommerse website from scratch               |        1 |       1003 | 2023-10-10 18:47:45 | 2023-11-09 18:47:45 |
+|         2 | WordPress website for our company                    |        1 |       1002 | 2023-10-10 18:47:45 | 2023-11-24 18:47:45 |
+|         3 | Manage our company servers                           |        2 |       1007 | 2023-10-10 18:47:45 | 2023-11-24 18:47:45 |
+|         4 | Hosting account is not working                       |        3 |       1009 | 2023-10-10 18:47:45 | 2023-10-17 18:47:45 |
+|         5 | MySQL database from my desktop application           |        4 |       1010 | 2023-10-10 18:47:45 | 2023-10-25 18:47:45 |
+|         6 | Develop new WordPress plugin for my business website |        2 |       NULL | 2023-10-10 18:47:45 | 2023-10-20 18:47:45 |
+|         7 | Migrate web application and database to new server   |        2 |       NULL | 2023-10-10 18:47:45 | 2023-10-15 18:47:45 |
+|         8 | Android Application development                      |        4 |       1004 | 2023-10-10 18:47:45 | 2023-11-09 18:47:45 |
+|         9 | Hosting account is not working                       |        3 |       1001 | 2023-10-10 18:47:45 | 2023-10-17 18:47:45 |
+|        10 | MySQL database from my desktop application           |        4 |       1008 | 2023-10-10 18:47:45 | 2023-10-25 18:47:45 |
+|        11 | Develop new WordPress plugin for my business website |        2 |       NULL | 2023-10-10 18:47:45 | 2023-10-20 18:47:45 |
++-----------+------------------------------------------------------+----------+------------+---------------------+---------------------+
+11 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee corss join projects
+    -> ;
++------+-------------------+------------+--------+------------------------------------------------------+----------+
+| id   | name              | Department | city   | title                                                | Clientid |
++------+-------------------+------------+--------+------------------------------------------------------+----------+
+| 1010 | Hina Sharma       | HR         | Mumbai | Develop ecommerse website from scratch               |        1 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Develop ecommerse website from scratch               |        1 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | Develop ecommerse website from scratch               |        1 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Develop ecommerse website from scratch               |        1 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | Develop ecommerse website from scratch               |        1 |
+| 1005 | Linda Jones       | HR         | London | Develop ecommerse website from scratch               |        1 |
+| 1004 | Mike Walker       | Finance    | London | Develop ecommerse website from scratch               |        1 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch               |        1 |
+| 1002 | Mary Smith        | HR         | London | Develop ecommerse website from scratch               |        1 |
+| 1001 | John Doe          | IT         | London | Develop ecommerse website from scratch               |        1 |
+| 1010 | Hina Sharma       | HR         | Mumbai | WordPress website for our company                    |        1 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | WordPress website for our company                    |        1 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | WordPress website for our company                    |        1 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | WordPress website for our company                    |        1 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | WordPress website for our company                    |        1 |
+| 1005 | Linda Jones       | HR         | London | WordPress website for our company                    |        1 |
+| 1004 | Mike Walker       | Finance    | London | WordPress website for our company                    |        1 |
+| 1003 | James Brown       | Finance    | London | WordPress website for our company                    |        1 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company                    |        1 |
+| 1001 | John Doe          | IT         | London | WordPress website for our company                    |        1 |
+| 1010 | Hina Sharma       | HR         | Mumbai | Manage our company servers                           |        2 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Manage our company servers                           |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | Manage our company servers                           |        2 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                           |        2 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | Manage our company servers                           |        2 |
+| 1005 | Linda Jones       | HR         | London | Manage our company servers                           |        2 |
+| 1004 | Mike Walker       | Finance    | London | Manage our company servers                           |        2 |
+| 1003 | James Brown       | Finance    | London | Manage our company servers                           |        2 |
+| 1002 | Mary Smith        | HR         | London | Manage our company servers                           |        2 |
+| 1001 | John Doe          | IT         | London | Manage our company servers                           |        2 |
+| 1010 | Hina Sharma       | HR         | Mumbai | Hosting account is not working                       |        3 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working                       |        3 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | Hosting account is not working                       |        3 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Hosting account is not working                       |        3 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | Hosting account is not working                       |        3 |
+| 1005 | Linda Jones       | HR         | London | Hosting account is not working                       |        3 |
+| 1004 | Mike Walker       | Finance    | London | Hosting account is not working                       |        3 |
+| 1003 | James Brown       | Finance    | London | Hosting account is not working                       |        3 |
+| 1002 | Mary Smith        | HR         | London | Hosting account is not working                       |        3 |
+| 1001 | John Doe          | IT         | London | Hosting account is not working                       |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1005 | Linda Jones       | HR         | London | MySQL database from my desktop application           |        4 |
+| 1004 | Mike Walker       | Finance    | London | MySQL database from my desktop application           |        4 |
+| 1003 | James Brown       | Finance    | London | MySQL database from my desktop application           |        4 |
+| 1002 | Mary Smith        | HR         | London | MySQL database from my desktop application           |        4 |
+| 1001 | John Doe          | IT         | London | MySQL database from my desktop application           |        4 |
+| 1010 | Hina Sharma       | HR         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1005 | Linda Jones       | HR         | London | Develop new WordPress plugin for my business website |        2 |
+| 1004 | Mike Walker       | Finance    | London | Develop new WordPress plugin for my business website |        2 |
+| 1003 | James Brown       | Finance    | London | Develop new WordPress plugin for my business website |        2 |
+| 1002 | Mary Smith        | HR         | London | Develop new WordPress plugin for my business website |        2 |
+| 1001 | John Doe          | IT         | London | Develop new WordPress plugin for my business website |        2 |
+| 1010 | Hina Sharma       | HR         | Mumbai | Migrate web application and database to new server   |        2 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Migrate web application and database to new server   |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | Migrate web application and database to new server   |        2 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Migrate web application and database to new server   |        2 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | Migrate web application and database to new server   |        2 |
+| 1005 | Linda Jones       | HR         | London | Migrate web application and database to new server   |        2 |
+| 1004 | Mike Walker       | Finance    | London | Migrate web application and database to new server   |        2 |
+| 1003 | James Brown       | Finance    | London | Migrate web application and database to new server   |        2 |
+| 1002 | Mary Smith        | HR         | London | Migrate web application and database to new server   |        2 |
+| 1001 | John Doe          | IT         | London | Migrate web application and database to new server   |        2 |
+| 1010 | Hina Sharma       | HR         | Mumbai | Android Application development                      |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Android Application development                      |        4 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | Android Application development                      |        4 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Android Application development                      |        4 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | Android Application development                      |        4 |
+| 1005 | Linda Jones       | HR         | London | Android Application development                      |        4 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development                      |        4 |
+| 1003 | James Brown       | Finance    | London | Android Application development                      |        4 |
+| 1002 | Mary Smith        | HR         | London | Android Application development                      |        4 |
+| 1001 | John Doe          | IT         | London | Android Application development                      |        4 |
+| 1010 | Hina Sharma       | HR         | Mumbai | Hosting account is not working                       |        3 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working                       |        3 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | Hosting account is not working                       |        3 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Hosting account is not working                       |        3 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | Hosting account is not working                       |        3 |
+| 1005 | Linda Jones       | HR         | London | Hosting account is not working                       |        3 |
+| 1004 | Mike Walker       | Finance    | London | Hosting account is not working                       |        3 |
+| 1003 | James Brown       | Finance    | London | Hosting account is not working                       |        3 |
+| 1002 | Mary Smith        | HR         | London | Hosting account is not working                       |        3 |
+| 1001 | John Doe          | IT         | London | Hosting account is not working                       |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | MySQL database from my desktop application           |        4 |
+| 1005 | Linda Jones       | HR         | London | MySQL database from my desktop application           |        4 |
+| 1004 | Mike Walker       | Finance    | London | MySQL database from my desktop application           |        4 |
+| 1003 | James Brown       | Finance    | London | MySQL database from my desktop application           |        4 |
+| 1002 | Mary Smith        | HR         | London | MySQL database from my desktop application           |        4 |
+| 1001 | John Doe          | IT         | London | MySQL database from my desktop application           |        4 |
+| 1010 | Hina Sharma       | HR         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | Develop new WordPress plugin for my business website |        2 |
+| 1005 | Linda Jones       | HR         | London | Develop new WordPress plugin for my business website |        2 |
+| 1004 | Mike Walker       | Finance    | London | Develop new WordPress plugin for my business website |        2 |
+| 1003 | James Brown       | Finance    | London | Develop new WordPress plugin for my business website |        2 |
+| 1002 | Mary Smith        | HR         | London | Develop new WordPress plugin for my business website |        2 |
+| 1001 | John Doe          | IT         | London | Develop new WordPress plugin for my business website |        2 |
++------+-------------------+------------+--------+------------------------------------------------------+----------+
+110 rows in set (0.02 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee  join projects on Employee.id=projects.Employeeid;
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch     |        1 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development            |        4 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee  join projects on Employee.id=projects.Employeeid where city ="London";
++------+-------------+------------+--------+----------------------------------------+----------+
+| id   | name        | Department | city   | title                                  | Clientid |
++------+-------------+------------+--------+----------------------------------------+----------+
+| 1001 | John Doe    | IT         | London | Hosting account is not working         |        3 |
+| 1002 | Mary Smith  | HR         | London | WordPress website for our company      |        1 |
+| 1003 | James Brown | Finance    | London | Develop ecommerse website from scratch |        1 |
+| 1004 | Mike Walker | Finance    | London | Android Application development        |        4 |
++------+-------------+------------+--------+----------------------------------------+----------+
+4 rows in set (0.01 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee  join projects on Employee.id=projects.Employeeid  order by name;
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch     |        1 |
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development            |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee  join projects on Employee.id=projects.Employeeid  order by id;
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch     |        1 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development            |        4 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select Department from employee  join projects on Employee.id=projects.Employeeid  group by department;
++------------+
+| Department |
++------------+
+| IT         |
+| HR         |
+| Finance    |
++------------+
+3 rows in set (0.01 sec)
+
+mysql> select Department ,count(Depertment) from employee  join projects on Employee.id=projects.Employeeid  group by department;
+ERROR 1054 (42S22): Unknown column 'Depertment' in 'field list'
+mysql> select Department ,count(Department) from employee  join projects on Employee.id=projects.Employeeid  group by department;
++------------+-------------------+
+| Department | count(Department) |
++------------+-------------------+
+| IT         |                 3 |
+| HR         |                 3 |
+| Finance    |                 2 |
++------------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> select Department ,count(Department) from employee  join projects on Employee.id=projects.Employeeid  group by department having count(department)>2;
++------------+-------------------+
+| Department | count(Department) |
++------------+-------------------+
+| IT         |                 3 |
+| HR         |                 3 |
++------------+-------------------+
+2 rows in set (0.01 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee  join projects on Employee.id=projects.Employeeid;
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch     |        1 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development            |        4 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee  join projects on Employee.id=projects.Employeeid where department ="hr" or department="It";
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee  join projects on Employee.id=projects.Employeeid where department in("hr","it");
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee  join projects on Employee.id=projects.Employeeid where department not in("hr","it");
++------+-------------+------------+--------+----------------------------------------+----------+
+| id   | name        | Department | city   | title                                  | Clientid |
++------+-------------+------------+--------+----------------------------------------+----------+
+| 1003 | James Brown | Finance    | London | Develop ecommerse website from scratch |        1 |
+| 1004 | Mike Walker | Finance    | London | Android Application development        |        4 |
++------+-------------+------------+--------+----------------------------------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee left  join projects on Employee.id=projects.Employeeid where department in("hr","it");
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1005 | Linda Jones       | HR         | London | NULL                                       |     NULL |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | NULL                                       |     NULL |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select Department ,count(Department) from employee left join projects on Employee.id=projects.Employeeid;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'company.employee.Department'; this is incompatible with sql_mode=only_full_group_by
+mysql> select id ,name,Department,city,title,Clientid from employee  join projects on Employee.id=projects.employeeId;
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch     |        1 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development            |        4 |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee left join projects on Employee.id=projects.employeeId;
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| id   | name              | Department | city   | title                                      | Clientid |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+| 1001 | John Doe          | IT         | London | Hosting account is not working             |        3 |
+| 1002 | Mary Smith        | HR         | London | WordPress website for our company          |        1 |
+| 1003 | James Brown       | Finance    | London | Develop ecommerse website from scratch     |        1 |
+| 1004 | Mike Walker       | Finance    | London | Android Application development            |        4 |
+| 1005 | Linda Jones       | HR         | London | NULL                                       |     NULL |
+| 1006 | Anurag Mohanty    | IT         | Mumbai | NULL                                       |     NULL |
+| 1007 | Priyanla Dewangan | HR         | Mumbai | Manage our company servers                 |        2 |
+| 1008 | Sambit Mohanty    | IT         | Mumbai | MySQL database from my desktop application |        4 |
+| 1009 | Pranaya Kumar     | IT         | Mumbai | Hosting account is not working             |        3 |
+| 1010 | Hina Sharma       | HR         | Mumbai | MySQL database from my desktop application |        4 |
++------+-------------------+------------+--------+--------------------------------------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee left join projects on Employee.id=projects.employeeId where id is null;;
+Empty set (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql> select id ,name,Department,city,title,Clientid from employee left join projects on Employee.id=projects.employeeId where id is null;
+Empty set (0.00 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee left join projects on Employee.id=projects.employeeId where employeeid is null;
++------+----------------+------------+--------+-------+----------+
+| id   | name           | Department | city   | title | Clientid |
++------+----------------+------------+--------+-------+----------+
+| 1005 | Linda Jones    | HR         | London | NULL  |     NULL |
+| 1006 | Anurag Mohanty | IT         | Mumbai | NULL  |     NULL |
++------+----------------+------------+--------+-------+----------+
+2 rows in set (0.01 sec)
+
+mysql> select id ,name,Department,city,title,Clientid from employee right join projects on Employee.id=projects.employeeId where employeeid is null;
++------+------+------------+------+------------------------------------------------------+----------+
+| id   | name | Department | city | title                                                | Clientid |
++------+------+------------+------+------------------------------------------------------+----------+
+| NULL | NULL | NULL       | NULL | Develop new WordPress plugin for my business website |        2 |
+| NULL | NULL | NULL       | NULL | Migrate web application and database to new server   |        2 |
+| NULL | NULL | NULL       | NULL | Develop new WordPress plugin for my business website |        2 |
++------+------+------------+------+------------------------------------------------------+----------+
+3 rows in set (0.00 sec)
+
+mysql>
