@@ -1,0 +1,14 @@
+1. Write a mysql statement to find the concatenated first_name, last_name where the age of the employee is greater than 30.
+2. Write a mysql statement to get user, current date and mysql version.
+3. Write a mysql statement to get item id, item, price of the most expensive item.
+4. Write a mysql statement to create a new user and set a password and privileges for an existing database.
+5. Write a mysql statement to select data of only CS and IT departments.
+6. Write a mysql statement to select data of all departments in descending order by age.
+7. Write a mysql statement to determine the age of each of the students.
+8. Write a mysql statement to retrieve name beginning with 'm'.
+9. Write a mysql statement to find the name, birth, department name, department block from the given tables.
+10. Write a mysql statement to get name of students containing exactly four characters.
+11. Delete duplicate row from the table.
+12. Display the alternate rows from MySQL table.
+13. Delete alternate rows from MySQL table.
+14. MySQL update multiple rows in one query.
