@@ -1,0 +1,33 @@
+3 tables
+org                                           fullTime			partTime                    details
+ regno name,location    eid ,name, regno salary      eid ,name, regno ptid    salary, city,designation
+select max(salary) as maxSalary from tblEmployee
+select min(salary) as minSalary from tblEmploee
+select eid,name,regno,salary from tblEmployee where salary =(select max(salary) from tblemployee )
+int a[]={10,20,30,40,50};
+int b[]={60,50,800,70,90,54,46};
+int c[]={};
+int x[]={10,20,0,80,90,0,55,0,100};
+result={10,20,80,90,55,100,0,0,0};
+String str="mahajan how are you hi";
+result ="Hi You Are How Mahajan";
+*
+**
+***
+****
+*****
+****
+***
+**
+*
+"MOM"=>MOM
+int a[]={10,0,20,0,0,30,0,40,0,50,0}
+10+1+20-1+1+30-1
+
+
+
+
+
+
+
+
